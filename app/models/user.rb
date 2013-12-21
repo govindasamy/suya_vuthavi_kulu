@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
 
   ####Total colelction report
   def total_collection
-    AccountTranDetail.where(:from_account_id => account.id, :to_account_id => get_group.account.id).select("sum(saving + interest_credit + other_amount) as amount").last.amount
+    AccountTranDetail.where(:from_account_id => account.id, :to_account_id => get_group.account.id).select("sum(saving + interest_credit + other_amount) as amount").last.amount.to_f
   end  
 
 end
