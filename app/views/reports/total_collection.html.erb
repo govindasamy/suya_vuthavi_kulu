@@ -1,0 +1,57 @@
+<h3 style='text-align:center'>Total Collections</h3>
+<br/>
+<table id="table_style">
+    <tr>
+        <th></th>
+        <th>Group</th>
+        <th>Total Members</th>
+        <th>Per Head</th>
+        <th>Total Collection</th>
+    </tr>
+    <% i = 0 %>
+    <% total = 0 %>
+    <% for group in @groups %>
+    <% i += 1 %>
+    <tr>
+        <td><a href="#" id="show_1">Show Details</a></td>
+        <td><%= group.name %></td>
+        <td><%= group.users.count %></td>
+            <% et = group.get_total_value %>
+        <td><%= per_head = (et / group.users.count).round %></td> 
+        <td><%= et %></td>
+            <% total += et %>
+    </tr>
+
+    <tr id="extra_1" style="display: none;">
+      <td colspan='5'>
+        <table>
+          <tr>
+            <td>User</td>
+            <td>Amount Paid</td>
+            <td>Loan Amount</td>
+            <td>Balance</td>
+          </tr>
+          <% for user in group.users %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= per_head %></td>
+              <td><%= ob = user.account.outstanding_balance %></td>
+              <td><%= per_head - ob %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+        <td colspan='4'>TOTAL</td>
+        <td><%= total %></td>
+    </tr>    
+</table>
+
+<script>
+  $("a[id^=show_]").click(function(event) {
+    $("#extra_" + $(this).attr('id').substr(5)).slideToggle("slow");
+    event.preventDefault();
+  });
+</script>

@@ -53,4 +53,8 @@ class ReportsController < ApplicationController
     render :layout => false
   end
 
+  def total_collection
+    @groups = Group.order("name")
+  end  
+
 end	

@@ -141,5 +141,10 @@ class Group < ActiveRecord::Base
   def self.update_bank_final_balance(date,group)
     group ? group.update_bank_final_balance(date, group.account.id) : Group.all.each{|group| group.update_bank_final_balance(date, group.account.id) }
   end
+  
+  ####Total colelction report
+  def get_total_value 
+    users.inject(0){|acc, user| acc + user.total_collection }
+  end  
 
 end

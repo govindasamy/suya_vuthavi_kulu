@@ -55,6 +55,7 @@ SuyaVuthavi::Application.routes.draw do
     get :load_grand_details, :on => :collection
     get :transactions, :on => :collection
     get :transaction_details, :on => :collection
+    get :total_collection, :on => :collection
   end 
 
   # The priority is based upon order of creation:
