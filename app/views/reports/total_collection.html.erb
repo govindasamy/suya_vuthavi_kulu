@@ -14,7 +14,7 @@
     <% for group in @groups %>
     <% i += 1 %>
     <tr>
-        <td><a href="#" id="show_1">Show Details</a></td>
+        <td><a href="#" id="show_<%= group.id %>">Show Details</a></td>
         <td><%= group.name %></td>
         <td><%= group.saving_amount %></td>
         <td><%= group.users.count %></td>
@@ -24,7 +24,7 @@
             <% total += et %>
     </tr>
 
-    <tr id="extra_1" style="display: none;">
+    <tr id="extra_<%= group.id %>" style="display: none;">
       <td colspan='6'>
         <table>
           <tr>
