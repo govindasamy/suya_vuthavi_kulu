@@ -4,6 +4,7 @@
     <tr>
         <th></th>
         <th>Group</th>
+        <th>Saving</th>
         <th>Total Members</th>
         <th>Per Head</th>
         <th>Total Collection</th>
@@ -15,6 +16,7 @@
     <tr>
         <td><a href="#" id="show_1">Show Details</a></td>
         <td><%= group.name %></td>
+        <td><%= group.saving_amount %></td>
         <td><%= group.users.count %></td>
             <% et = group.get_total_value %>
         <td><%= per_head = (et / group.users.count).round %></td> 
@@ -23,11 +25,11 @@
     </tr>
 
     <tr id="extra_1" style="display: none;">
-      <td colspan='5'>
+      <td colspan='6'>
         <table>
           <tr>
-            <td>User</td>
-            <td>Amount Paid</td>
+            <td>Member</td>
+            <td>Paid Amount</td>
             <td>Loan Amount</td>
             <td>Balance</td>
           </tr>
@@ -44,7 +46,7 @@
     </tr>
     <% end %>
     <tr>
-        <td colspan='4'>TOTAL</td>
+        <td colspan='5'>TOTAL</td>
         <td><%= total %></td>
     </tr>    
 </table>
