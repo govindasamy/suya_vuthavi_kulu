@@ -19,7 +19,7 @@
     <tr>
         <td><%= i %></td>
         <td><%=member.full_name %></td>
-            <% details = member.monthly_decision_book(params[:transaction_date].to_date) %>
+            <% details = member.monthly_decision_book(params[:transaction_date].to_date, @group) %>
         <td><%= details["saving"] %><% total_hash["saving"] += details["saving"] %></td>
         <td><%= details["due"] %><% total_hash["due"] += details["due"] %></td>
         <td><%= details["principle_credit"] %><% total_hash["principle_credit"] += details["principle_credit"] %></td>

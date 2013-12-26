@@ -3,8 +3,8 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :saving_amount, :due_amount
 
   has_one :account, :as => :accountable
-  has_many :groups_user
-  has_many :users, :through => :groups_user
+  has_and_belongs_to_many :users
+  has_many :groups_users
   has_many :monthly_buckets
 
   after_save :create_account
@@ -79,7 +79,7 @@ class Group < ActiveRecord::Base
     total_hash = {"saving" => 0, "due" => 0, "principle_credit" => 0, "interest_credit" => 0, "other_amount" => 0, "total" => 0} 
     debit_details = {} 
     for member in self.users
-      details = member.monthly_decision_book(date.to_date) 
+      details = member.monthly_decision_book(date.to_date, self) 
       total_hash["saving"] += details["saving"] 
       total_hash["due"] += details["due"] 
       total_hash["principle_credit"] += details["principle_credit"] 
@@ -87,7 +87,7 @@ class Group < ActiveRecord::Base
       total_hash["other_amount"] += details["other_amount"] 
       total = details["saving"] + details["due"] + details["other_amount"] + details["principle_credit"] + details["interest_credit"] 
       total_hash["total"] += total 
-      debit_details.merge!({member.full_name => member.monthly_decision_book_debit(date.to_date)}) 
+      debit_details.merge!({member.full_name => member.monthly_decision_book_debit(date.to_date, self)}) 
       debit_details.delete_if{|k,v| v["principle_debit"] == 0 } 
     end 
 
@@ -143,8 +143,8 @@ class Group < ActiveRecord::Base
   end
   
   ####Total colelction report
-  def get_total_value 
-    users.inject(0){|acc, user| acc + user.total_collection }
+  def get_total_value(group_obj) 
+    users.inject(0){|acc, user| acc + user.total_collection(group_obj) }
   end  
 
 end

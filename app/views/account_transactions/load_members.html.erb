@@ -18,10 +18,10 @@
     <% for member in @members %>
     <% i += 1 %>
     <tr>
-        <% bal_saving = member.get_balance_saving(params[:date].to_date) %>
-        <% bal_due = member.get_balance_due(params[:date].to_date) %>
+        <% bal_saving = member.get_balance_saving(params[:date].to_date, @group) %>
+        <% bal_due = member.get_balance_due(params[:date].to_date, @group) %>
         <% outs_bal = member.account.outstanding_balance %>
-        <% bal_interest = member.get_balance_interest(params[:date].to_date) %>
+        <% bal_interest = member.get_balance_interest(params[:date].to_date, @group) %>
         
         <td><%=member.position.to_s %></td>
         <td><%=member.full_name %><%= hidden_field :member, :id, :index => i, :value => member.id %></td>

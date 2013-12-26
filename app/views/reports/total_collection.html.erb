@@ -18,8 +18,8 @@
         <td><%= group.name %></td>
         <td><%= group.saving_amount %></td>
         <td><%= group.users.count %></td>
-            <% et = group.get_total_value %>
-        <td><%= per_head = (et / group.users.count).round %></td> 
+            <% et = group.get_total_value(group) %>
+        <td><%= per_head = group.users.count > 0 ? (et / group.users.count).round : 0 %></td> 
         <td><%= et %></td>
             <% total += et %>
     </tr>

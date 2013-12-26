@@ -2,7 +2,7 @@
 <% debit_details = {} %>
 <% for member in @members %>
 
-  <% details = member.monthly_decision_book(params[:transaction_date].to_date) %>
+  <% details = member.monthly_decision_book(params[:transaction_date].to_date, @group) %>
   <% total_hash["saving"] += details["saving"] %>
   <% total_hash["due"] += details["due"] %>
   <% total_hash["principle_credit"] += details["principle_credit"] %>
@@ -11,7 +11,7 @@
   <% total = details["saving"] + details["due"] + details["other_amount"] + details["principle_credit"] + details["interest_credit"] %>
   <% total_hash["total"] += total %>
 
-  <% debit_details.merge!({member.full_name => member.monthly_decision_book_debit(params[:transaction_date].to_date)}) %>
+  <% debit_details.merge!({member.full_name => member.monthly_decision_book_debit(params[:transaction_date].to_date, @group)}) %>
   <% debit_details.delete_if{|k,v| v["principle_debit"] == 0 } %>
 
 <% end %>

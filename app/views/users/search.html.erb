@@ -19,8 +19,12 @@
 		<td><%= user.email %></td>
 		<td><%= user.dob %></td>
 		<td><%= user.account.name %></td>
-		<!-- < %raise user.group_name.to_s.inspect % > -->
-		<td><%= user.group_name%></td>
+		<td>
+		  <% for group in user.groups %> 
+		    <%= group.name %>
+		    </br>
+		  <% end %>
+		</td>
 		<td><%= link_to "Edit", edit_user_path(user) %></td>
 		<td><%= link_to "Delete", user_path(user), :confirm => "Are you sure?", :method=>:delete %></td>
 	  </tr>	
