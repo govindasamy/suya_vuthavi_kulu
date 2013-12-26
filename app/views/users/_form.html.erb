@@ -20,7 +20,7 @@
 	    <td>Group :</td>
 	    <td>
 	    <% for group in Group.order("name")%>
-	      <%= check_box "slected","groups", {:index => group.id, :checked => @user.groups.include?(group)}, true, false %><%= group.name %>
+	      <%= check_box "slected","groups", {:index => group.id, :checked => @user.groups.include?(group), :disabled => @user.groups.include?(group)}, true, false %><%= group.name %>
 	      </br>
 	    <% end %>
 	    </td>
