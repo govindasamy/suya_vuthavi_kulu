@@ -1,6 +1,7 @@
-<h2>Edit Group</h2>
+<table><tr><td><h2 align="center">Edit Group</h2></td></tr></table>
+<br/>
 <%= form_for(@group, :url => group_path(@group), :method => "put") do |f| %>
   <%= render :partial => "form" %>
   <br/>
-  <%= submit_tag "Save" %>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
 <% end %>

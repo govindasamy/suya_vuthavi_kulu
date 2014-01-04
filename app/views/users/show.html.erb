@@ -1,0 +1,46 @@
+<br/>
+<div style="border:1px solid;height:100px;width:500px">
+	<div style="border:1px solid;height:80px;width:80px;position:absolute;margin: 10px">
+		<%= image_tag @user.profile_image_url(:thumb) if @user.profile_image?%>
+	</div>
+	<div style="position:relative;left:120px;padding:10px"><h2 style="color:blue"><%= @user.full_name.capitalize%></h2>
+	<p>Group Name  <% for group in @user.groups %><%= " | " + group.name.capitalize %><% end %></p></div>
+</div>
+<div>
+	<table id="table_style">
+		<tr>
+			<td colspan="2"><h3>User Details</h3></td>
+		</tr>
+		<tr>
+			<td>First Name</td>
+			<td><%= @user.first_name.capitalize %></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><%= @user.last_name.capitalize %></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><%= @user.email %></td>
+		</tr>
+		<tr>
+			<td>DOB</td>
+			<td><%= @user.dob %></td>
+		</tr>
+		<tr>
+			<td>Account Name</td>
+			<td><%= @user.account.name.capitalize %></td>
+		</tr>
+		<tr>
+			<td>Group Name</td>
+			<td>
+				<% for group in @user.groups %> 
+		   		<%= group.name.capitalize %>
+		    	</br>
+		  		<% end %>
+		  	</td>
+		</tr>
+	</table>
+</div>
+<br/>
+<p style='margin-left:322px'><%= link_to "<button>Edit</button>".html_safe, edit_user_path(@user) %></p>

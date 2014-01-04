@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
 
   has_one :account, :as => :accountable
   has_many :groups_users
+  has_many :roles_users
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :roles
-  has_many :roles_user  
-
+  mount_uploader :profile_image, UserUploader
   after_create :create_account
   
   def create_account

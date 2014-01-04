@@ -32,6 +32,10 @@ end
 
 gem 'rufus-scheduler'
 
+gem "rmagick"
+
+gem 'carrierwave'
+
 # gem 'whenever', :require => false
 
 # To use ActiveModel has_secure_password

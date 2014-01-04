@@ -1,12 +1,12 @@
-<H2>Bank Details</H2>
-<%= link_to "New Bank", new_bank_path %>	
+<table><tr><td><H2>Bank Details</H2></td></tr></table>
+<p style='margin-left:273px'><%= link_to "<button>New Bank</button>".html_safe, new_bank_path %>	</p>
 <table id="table_style">
 	<tr>
 		<th>Bank Name</th>
 		<th>Branch</th>
 		<th>Account Name</th>
 		<th>Account #</th>
-		<th></th>
+		<th>Option</th>
 		<!--th></th-->
 	</tr>	
 	<% for bank in @banks %>

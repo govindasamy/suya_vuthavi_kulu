@@ -1,11 +1,11 @@
 <h3 style='text-align:center'>Groups</h3>
-<p style='margin-left:322px'><%= link_to "New Group", new_group_path %></p>	
+<p style='margin-left:322px'><%= link_to "<button>New Group</button>".html_safe, new_group_path %></p>	
 <table id="table_style">
 	<tr>
 		<th>Name</th>
 		<th>Saving</th>
 		<th>Due</th>
-		<th></th>
+		<th>Option</th>
 		<!--th></th-->
 	</tr>	
 	<% for group in @groups %>
