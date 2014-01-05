@@ -1,6 +1,6 @@
 <table><tr><td><h2 align="center">Edit User</h2></td></tr></table>
 <br/>
-<%= form_for(@user, :url => user_path(@user), :method => "put") do |f| %>
+<%= form_for(@user, :url => user_path(@user), :html=>{:multipart => true}, :method => "put") do |f| %>
   <%= render :partial => "form" %>
   <br/>
   <table><tr><td><%= submit_tag "Save" %></td></tr></table>

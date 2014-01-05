@@ -1,3 +1,13 @@
+<div style="border:1px solid;height:100px;width:500px">
+	<div style="border:1px solid;height:80px;width:80px;position:absolute;margin: 10px">
+		<%= image_tag @user.profile_image_url(:thumb) if @user.profile_image?%>
+	</div>
+	<div style="position:relative;left:120px;padding:10px"><h2 style="color:blue"><%= @user.full_name.capitalize%></h2>
+	<p>Group Name  <% for group in @user.groups %><%= " | " + group.name.capitalize %><% end %></p>
+    <%= file_field :user, :profile_image%>
+	</div>
+	
+</div>
 <table id="table_style">
 	<tr>
 		<td>First Name : </td>
@@ -23,8 +33,19 @@
 	      <%= check_box "slected","groups", {:index => group.id, :checked => @user.groups.include?(group), :disabled => @user.groups.include?(group)}, true, false %><%= group.name %>
 	      </br>
 	    <% end %>
+	    </td> 		
+	</tr>
+
+    <tr>
+	    <td>Role :</td>
+	    <td>
+	    <% for role in Role.order("name")%>
+	      <%= check_box "slected1","roles", {:index => role.id, :checked => @user.roles.include?(role)}, true, false %><%= role.name %>
+	      </br>
+	    <% end %>
 	    </td>
-	</tr>	
+	</tr>
+
 	<tr>
 		<td>Position :</td>
 		<td><%= text_field :user, :position, :size => "30" %></td>

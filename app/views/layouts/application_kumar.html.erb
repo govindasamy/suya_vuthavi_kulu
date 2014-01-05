@@ -45,7 +45,7 @@ Released   : 2009-07-25
                <li style="float:right;"><%= link_to "Sign in", signin_path %></li>
              <% else -%>
                <li style="float:right;"><%= link_to "Sign out", signout_path %></li>
-               <li style="float:right;"><%= link_to current_user.full_name, "#" %></li>
+               <li style="float:right;"><%= link_to current_user.full_name.capitalize, user_path(current_user)%></li>
              <% end -%>
         	 </ul>
         </div>

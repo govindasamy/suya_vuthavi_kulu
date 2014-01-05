@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @users = User.order("first_name")
   end	
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
   	@user = User.find(params[:id])
     @groups = Group.order("name")
@@ -19,14 +23,25 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	if @user.update_attributes(params[:user])
       @user.account.update_attributes(:name => @user.full_name)
+
       groups_users_ids = []
-      for group_id in params[:slected].keys
+      for group_id in (params[:slected] || {}).keys
         if eval(params[:slected][group_id][:groups])
           groups_user = GroupsUser.find_or_initialize_by_user_id_and_group_id(@user.id, group_id)
           groups_users_ids << groups_user.id if groups_user.save 
         end  
       end
       GroupsUser.destroy_all(["id not in(?) and user_id = ?", groups_users_ids, @user.id])
+
+      roles_ids = []
+      for role_id in (params[:slected1] || {}).keys
+        if eval(params[:slected1][role_id][:roles])
+          roles_user = RolesUser.find_or_initialize_by_user_id_and_role_id(@user.id, role_id)
+          roles_ids << roles_user.id if roles_user.save 
+        end  
+      end
+      RolesUser.destroy_all(["id not in(?) and user_id = ?", roles_ids, @user.id])
+
   	  flash[:notice] = "User was saved"	
   	  redirect_to list_users_path
   	else
