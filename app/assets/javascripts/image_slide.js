@@ -6,7 +6,6 @@ $(document).ready(function() {
 });
 
 function slideShow(speed) {
-alert('hi')
   // append an 'li' item to the 'ul' list for displaying the caption
   $('ul.slideshow').append('<li id="slideshow-caption" class="caption"><div class="slideshow-caption-container"><p></p></div></li>');
   $('ul.image_des').append('<li id="des-caption" class="caption_des"><div class="des-caption-container"><p></p></div></li>');
