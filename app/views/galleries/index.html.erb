@@ -1,0 +1,11 @@
+<p style='margin-left:322px'><%= link_to "<button>New Gallery</button>".html_safe, new_gallery_path %></p>	
+
+<table>
+	<%for group in @galleries.in_groups_of(3)%>
+		<tr>
+		    <%for gallery in group.compact%>
+			<td><%= link_to gallery.name, images_gallery_path(gallery) %></td>
+            <%end%>
+		</tr>
+	<%end%>
+</table>
