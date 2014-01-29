@@ -9,6 +9,7 @@ class AccountTransactionsController < ApplicationController
 
   def member_transaction
     @groups =Group.order("name")
+    
   end	
 
   def load_members
