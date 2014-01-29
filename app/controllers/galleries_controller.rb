@@ -11,6 +11,7 @@ end
 def create
   @gallery = Gallery.new(params[:gallery])
   @gallery.save!
+  redirect_to galleries_path
 end
 
 def edit

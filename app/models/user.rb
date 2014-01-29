@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
   
   def create_account
     Account.make_account(self)
+
+    ##assign user to normal role by default
+    role = Role.find_by_name("Normal")
+    roles_user = RolesUser.new(:role_id => role.id, :user_id => self.id)  
+    roles_user.save
   end
 
   def full_name
