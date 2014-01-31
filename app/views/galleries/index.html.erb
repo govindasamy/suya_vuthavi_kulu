@@ -1,5 +1,5 @@
-<p style='margin-left:322px'><%= link_to "<button>New Gallery</button>".html_safe, new_gallery_path %></p>	
-
+<p style='margin-left:322px'><%= link_to "<button>New Gallery</button>".html_safe, new_gallery_path %></p>
+	
 <table>
 	<%for group in @galleries.in_groups_of(3)%>
 		<tr>
