@@ -62,6 +62,8 @@ SuyaVuthavi::Application.routes.draw do
     get :images, :on => :member
     post :create_image, :on => :collection
   end
+
+  resources :donations
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

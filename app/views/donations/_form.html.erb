@@ -1,0 +1,24 @@
+<table id="table_style">
+	<tr>
+		<th>Donor Name </th>
+		<th>Amount  </th>
+		<th>Referd By  </th>
+		<th>Donated Date  </th>
+		<th>Description  </th>			
+	</tr>
+	<tr>
+		<td><%= text_field :donation, :name, :size => "10" %></td>
+		<td><%= text_field :donation, :amount, :size => "10" %></td>
+		<td><%= text_field :donation, :refered_by, :size => "10" %></td>
+		<td><%= text_field :donation, :date_collected, :size => "10", :class => "datepicker" %></td>
+		<td><%= text_field :donation, :description, :size => "10" %></td>
+		<td><%= button_tag "Add", :type=> "button", :onclick =>"add_donation()" %></td>
+	</tr>
+</table>
+
+<script>
+	function add_donation()
+	{
+		alert("vaaaada");
+	}
+</script>

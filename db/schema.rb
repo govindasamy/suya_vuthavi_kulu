@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124102308) do
+ActiveRecord::Schema.define(:version => 20140130175328) do
 
   create_table "account_tran_details", :force => true do |t|
     t.integer  "from_account_id",                                                 :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130124102308) do
     t.decimal  "to_outs_balance",   :precision => 10, :scale => 0, :default => 0
     t.datetime "created_at",                                                      :null => false
     t.datetime "updated_at",                                                      :null => false
+    t.text     "comments"
   end
 
   create_table "accounts", :force => true do |t|
@@ -45,6 +46,24 @@ ActiveRecord::Schema.define(:version => 20130124102308) do
     t.string   "account_number"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "donations", :force => true do |t|
+    t.string   "name"
+    t.string   "donor_id"
+    t.integer  "amount"
+    t.string   "refered_by"
+    t.datetime "date_collected"
+    t.text     "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "group_trans_tracks", :force => true do |t|
@@ -74,11 +93,34 @@ ActiveRecord::Schema.define(:version => 20130124102308) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "images", :force => true do |t|
+    t.integer  "gallery_id"
+    t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "monthly_buckets", :force => true do |t|
+    t.integer  "group_id"
+    t.date     "date"
+    t.decimal  "final_balance",      :precision => 10, :scale => 0, :default => 0
+    t.decimal  "bank_final_balance", :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name",        :null => false
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "roles_users", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -107,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20130124102308) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "position",               :default => 0
+    t.string   "profile_image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,24 @@
+<table><tr><td><H2>Donation Details</H2></td></tr></table>
+<p style='margin-left:273px'><%= link_to "<button>New Donation</button>".html_safe, new_donation_path %>	</p>
+<table id="table_style">
+	<tr>
+		<th>Donator Name</th>
+		<th>Donor ID</th>
+		<th>Amount</th>
+		<th>Donated Date</th>
+		<th>Refered By</th>
+		<th>Option</th>
+		<!--th></th-->
+	</tr>	
+	<% for donation in @donations %>
+	  <tr>
+		<td><%= donation.name.capitalize %></td>
+		<td><%= donation.donor_id %></td>
+		<td><%= donation.amount %></td>
+		<td><%= donation.date_collected %></td>
+		<td><%= donation.refered_by.capitalize %></td>
+		<td><%= link_to "Edit", edit_donation_path(donation) %></td>
+		<!--td>< % = link_to "Delete", donation_path(donation), :confirm => "Are you sure?", :method=>:delete % ></td-->
+	  </tr>	
+	<% end %>
+</table>

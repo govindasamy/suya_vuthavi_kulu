@@ -1,5 +1,5 @@
-exp_acc = Account.find_by_name("Expences")
-EXPENSES_ACC_ID = exp_acc ? exp_acc.id : nil
+# exp_acc = Account.find_by_name("Expences")
+# EXPENSES_ACC_ID = exp_acc ? exp_acc.id : nil
 
 Int_Percentage = 1
 
