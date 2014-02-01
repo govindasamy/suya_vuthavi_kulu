@@ -254,11 +254,12 @@ background-color: #3C3C3C;
 #mater{width:800px;float:left;box-shadow:0px 1px 15px grey;margin: 0px -2px 0px -16px;padding: 0px 0px 0px 15px;}
 #mater1{width:1007px;float:left;box-shadow:0px 1px 15px grey;margin: 0px -2px 0px -16px;padding: 0px 0px 0px 15px;}
 
+/*
 .show.#1{color:grey !important;list-style-type:none;font-weight:bold;font-size:16px;box-shadow:1px 2px 3px grey;margin-top:0px;top:0px;}
 .show.#2{color:grey !important;list-style-type:none;font-weight:bold;font-size:16px;box-shadow:1px 2px 3px grey;margin-top:-20px;top:0px;}
 
 .show.#3{color:grey !important;list-style-type:none;font-weight:bold;font-size:16px;box-shadow:1px 2px 3px grey;margin-top:-40px;top:0px;}
-
+*/
 #content_item { 
 width: 1015px;
 padding: 10px 0 10px 25px;
