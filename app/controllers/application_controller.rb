@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   layout :determine_layout
 
   def determine_layout
-  	"application_kumar" #site_layout" # application_kumar" #{}"application"
+  	"new_layout_site" #"new_layout_site" #application_kumar" #site_layout" # application_kumar" #{}"application"
   end	
 
   def after_sign_in_path_for(resource)
