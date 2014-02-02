@@ -47,6 +47,7 @@ SuyaVuthavi::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  config.assets.precompile += Dir["#{Rails.root}/app/assets/javascripts/*/"].map { |a| File.basename(a) }.collect{|obj| obj + "/*"} + Dir["#{Rails.root}/app/assets/stylesheets/*/"].map { |a| File.basename(a) }.collect{|obj| obj + "/*"} + Dir.entries("#{Rails.root}/app/assets/stylesheets").select {|f| !File.directory? f}
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
