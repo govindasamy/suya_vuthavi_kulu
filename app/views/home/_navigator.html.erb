@@ -1,6 +1,6 @@
 <nav>
 	<ul class="sf-menu" id="nav">
-	  <li><a href="index.html">Home</a></li>
+	  <li><%= link_to "Home", root_url %></li>
 	  <li><a href="#">Menu</a>
 	  	<ul>
 	  	  <% if current_user %>
@@ -19,23 +19,10 @@
 		  <li><%= link_to "Donation", donations_path %></li>
 		</ul>  
 	  </li>
-	  <li><a href="about_us">About us</a></li>
-	  <li><a href="another_page.html">Events</a>
-	    <ul>
-	      <li><a href="#">SVK members</a></li>
-	      <li><a href="#">Education</a>
-	        <ul>
-	          <li><a href="#">Students</a></li>
-	          <li><a href="#">foreign employees</a></li>
-	          <li><a href="#">indian employees</a></li>
-	        </ul>
-	      </li> 
-	      <li><a href="#">Careers</a></li>
-	      <li><a href="#">Materials</a></li>
-	    </ul>
-	  </li>
+	  <li><%= link_to "About us", root_url %></li>
+	  <li><%= link_to "Events", root_url %></li>
 	  <li><%= link_to "Gallery", galleries_path %></li>
-	  <li><a href="contact.php">Contact Us</a></li>
+	  <li><%= link_to "Contact us", root_url %></li>
 	  <% unless user_signed_in? %>
 	    <li>&nbsp;</li>
 	    <li style="float:right;"><%= link_to "Sign in", signin_path %></li>
