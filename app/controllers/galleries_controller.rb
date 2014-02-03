@@ -1,5 +1,7 @@
 class GalleriesController < ApplicationController
 
+skip_before_filter :authenticate_user!, :only => [:index, :images]
+
 def index
   @galleries = Gallery.order("name")
 end

@@ -18,7 +18,7 @@ SuyaVuthavi::Application.routes.draw do
     get '/users/auth/:provider' => 'custom_devise/omniauth_callbacks#passthru'
   end          
 
-  root :to => "home#index"
+  root :to => "sites/sites#home"
 
   resources :users do
     get :list, :on => :collection
@@ -64,6 +64,10 @@ SuyaVuthavi::Application.routes.draw do
   end
 
   resources :donations
+
+  scope '/sites' do
+    resources :sites
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,10 +2,16 @@
 	
 <table>
 	<%for group in @galleries.in_groups_of(3)%>
-		<tr>
-		    <%for gallery in group.compact%>
-			<td><%= link_to gallery.name, images_gallery_path(gallery) %></td>
-            <%end%>
-		</tr>
+	  <tr>
+		  <%for gallery in group.compact %>
+		    <td>
+		      <ul class="otis">
+		      	<li><%= link_to gallery.name, images_gallery_path(gallery) %></li>
+	     	    <li style="margin-top:10px"><%= link_to image_tag(gallery.images.first.image_url(:thumb)), images_gallery_path(gallery) %></li>
+		      </ul>
+		    </td>    	
+		  <%end%>
+	  </tr>
 	<%end%>
 </table>
+
