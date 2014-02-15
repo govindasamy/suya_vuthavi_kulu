@@ -7,7 +7,7 @@
 		    <td>
 		      <ul class="otis">
 		      	<li><%= link_to gallery.name, images_gallery_path(gallery) %></li>
-	     	    <li style="margin-top:10px"><%= link_to image_tag(gallery.images.first.image_url(:thumb)), images_gallery_path(gallery) %></li>
+	     	    <li style="margin-top:10px"><%= link_to image_tag(gallery.images.first.image_url(:thumb)), images_gallery_path(gallery) if gallery.images.first %></li>
 		      </ul>
 		    </td>    	
 		  <%end%>
