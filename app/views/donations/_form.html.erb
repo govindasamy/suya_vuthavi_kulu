@@ -7,18 +7,47 @@
 		<th>Description  </th>			
 	</tr>
 	<tr>
-		<td><%= text_field :donation, :name, :size => "10" %></td>
-		<td><%= text_field :donation, :amount, :size => "10" %></td>
-		<td><%= text_field :donation, :refered_by, :size => "10" %></td>
-		<td><%= text_field :donation, :date_collected, :size => "10", :class => "datepicker" %></td>
-		<td><%= text_field :donation, :description, :size => "10" %></td>
-		<td><%= button_tag "Add", :type=> "button", :onclick =>"add_donation()" %></td>
+		<td><%= text_field :donation, :name, :size => "7", :class => "count" %></td>
+		<td><%= text_field :donation, :amount, :size => "7" %></td>
+		<td><%= text_field :donation, :refered_by, :size => "7" %></td>
+		<td><%= text_field :donation, :date_collected, :size => "7", :class => "date_picker" %></td>
+		<td><%= text_field :donation, :description, :size => "7" %></td>
+		<td><%= button_tag "Add", :type=> "button", :class=>"addRow", :onclick => "count_click_add();" %></td>
+		<td><%= button_tag "Delete", :type=> "button", :class=>"delRow", :onclick => "count_click_del();" %></td>
 	</tr>
 </table>
 
 <script>
-	function add_donation()
-	{
-		alert("vaaaada");
-	}
+var count = 1;
+function count_click_add(){
+  count = count +1;
+  $("#max_row").val(count)
+}
+function count_click_del(){
+  count = count - 1;
+  $("#max_row").val(count)
+}
+
+function date_issue()
+{
+  for(i=1;i<=count;i++){
+    if($( "#donation_date_collected"+i).hasClass('hasDatepicker')){
+    	$( "#donation_date_collected"+i).removeClass('hasDatepicker')
+    }
+
+    $( "#donation_date_collected"+i).datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true,changeYear: true });
+  }
+}
+
+$(document).ready(function(){
+    // date_issue()
+  $(".addRow").btnAddRow({inputBoxAutoNumber:true},function() {
+	date_issue()
+  });
+  $(".delRow").btnDelRow({inputBoxAutoNumber:true},function() {
+	date_issue()
+  });
+});
 </script>
+
+

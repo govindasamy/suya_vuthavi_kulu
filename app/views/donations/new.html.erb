@@ -1,6 +1,7 @@
 <table><tr><td><h2>New Donation</h2></td></tr></table>
 <br/>
-<%= form_for(@donation, :url => donations_path, :method => "post") do |f| %>
+<%= form_for(@donation, :url => donations_path, :method => "post") do %>
+  <%= hidden_field_tag "max_row", "1" %>
   <%= render :partial => "form" %>
   <br/>
   <table><tr><td><%= submit_tag "Save" %></td></tr></table>

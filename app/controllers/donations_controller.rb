@@ -11,14 +11,19 @@ class DonationsController < ApplicationController
   end
 
   def create
-  	@donation = Donation.create_donation(params[:donation])
-  	if @donation
-  	  flash[:notice] = "Donation was saved"	
-  	  redirect_to donations_path
-  	else
-  	  flash[:notice] = "Donation was not saved"	
-  	  render :action => :new
-  	end 
+    status = Transaction::GuardedBlock.execute do |g|
+      for row in (1..params[:max_row].to_i)
+        key_value = ["name", "amount", "refered_by", "date_collected", "description"].inject({}){|acc,val| acc.merge!({val => params["donation"][val][row.to_s]}) }
+        g.b { Donation.create_donation(key_value) }
+      end  
+    end
+    if status
+      flash[:notice] = "Donation was saved" 
+      redirect_to donations_path
+    else
+      flash[:notice] = "Donation was not saved" 
+      render :action => :new
+    end 
   end
 
   def edit
