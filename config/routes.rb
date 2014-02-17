@@ -63,7 +63,9 @@ SuyaVuthavi::Application.routes.draw do
     post :create_image, :on => :collection
   end
 
-  resources :donations
+  resources :donations do
+    get :search, :on => :collection
+  end
 
   scope '/sites' do
     resources :sites

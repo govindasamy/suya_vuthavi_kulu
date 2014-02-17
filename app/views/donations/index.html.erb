@@ -1,5 +1,28 @@
 <table><tr><td><H2>Donation Details</H2></td></tr></table>
-<p style='margin-left:273px'><%= link_to "<button>New Donation</button>".html_safe, new_donation_path %>	</p>
+<p><%= link_to "<button>New Donation</button>".html_safe, new_donation_path %>	</p>
+<%= form_for :donation, :url=> search_donations_path  do %>
+<table width="525px"><tr><td>
+<fieldset>
+<legend><b>Search Here</b></legend>
+<table width="525px">
+	<tr>
+		<td>Name</td>
+		<td><%= text_field :donation, :name, :size => 7 %></td>
+		<td>Amount</td>
+		<td><%= text_field :donation, :amount, :size => 7%></td>
+		<td>From Date</td>
+		<td><%= text_field :donation, :date_collected1, :size => "7", :class => "date_picker"%></td>
+		<td>To Date</td>
+		<td><%= text_field :donation, :date_collected2, :size => "7", :class => "date_picker"%></td>
+	</tr>
+	<tr>
+		<td colspan="8"><p style='margin-left:250px'><%= submit_tag 'Search'%></p></td>
+	</tr>
+</table>
+</fieldset>
+</td></tr></table>
+<%end%>
+<br />
 <table id="table_style">
 	<tr>
 		<th>Donator Name</th>

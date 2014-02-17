@@ -47,4 +47,13 @@ class DonationsController < ApplicationController
   	redirect_to donations_path
   end
 
+  def search
+    con = []
+    con << "name like '%#{params[:donation][:name]}%'" unless params[:donation][:name].blank?
+    con << "amount = '#{params[:donation][:amount]}'" unless params[:donation][:amount].blank?
+    con << "date(date_collected) between '#{params[:donation][:date_collected1]}' and '#{params[:donation][:date_collected2]}'" unless params[:donation][:date_collected1].blank?
+    @donations = Donation.where(con.join(" and ")).order("name")
+    render :action => :index
+  end
+
 end
