@@ -1,9 +1,10 @@
 class DonationsController < ApplicationController
  
+  require 'time'
   skip_before_filter :authenticate_user!, :only => [:index]
 
   def index
-  	@donations = Donation.order("name")
+  	@donations = Donation.where("donor_id is not null").order("name")
   end  
 
   def new
@@ -48,12 +49,20 @@ class DonationsController < ApplicationController
   end
 
   def search
+    from_date = Time.parse(params[:donation][:date_collected1])
+    to_date = Time.parse(params[:donation][:date_collected2])
+    from_date.strftime("%y-%m-%d")
+    to_date.strftime("%y-%m-%d")
     con = []
     con << "name like '%#{params[:donation][:name]}%'" unless params[:donation][:name].blank?
     con << "amount = '#{params[:donation][:amount]}'" unless params[:donation][:amount].blank?
-    con << "date(date_collected) between '#{params[:donation][:date_collected1]}' and '#{params[:donation][:date_collected2]}'" unless params[:donation][:date_collected1].blank?
+    con << "date(date_collected) between '#{from_date}' and '#{to_date}'" unless from_date.blank?
     @donations = Donation.where(con.join(" and ")).order("name")
     render :action => :index
   end
+
+  def reports
+    @donations = Donation.order("date_collected, id")
+  end  
 
 end

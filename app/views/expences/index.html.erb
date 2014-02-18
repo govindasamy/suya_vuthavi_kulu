@@ -1,0 +1,21 @@
+<table><tr><td><H2>Expences Details</H2></td></tr></table>
+<p><%= link_to "<button>New Expences</button>".html_safe, new_expence_path %>	</p>
+<br />
+<table id="table_style">
+	<tr>
+		<th>Date</th>
+		<th>Amount</th>
+		<th>Description</th>
+		<th>Option</th>
+		<!--th></th-->
+	</tr>	
+	<% for expence in @expences %>
+	  <tr>
+		<td><%= expence.date_collected %></td>
+		<td><%= expence.amount %></td>
+		<td><%= expence.description %></td>
+		<td><%= link_to "Edit", edit_expence_path(expence) %></td>
+		<!--td>< % = link_to "Delete", expence_path(expence), :confirm => "Are you sure?", :method=>:delete % ></td-->
+	  </tr>	
+	<% end %>
+</table>

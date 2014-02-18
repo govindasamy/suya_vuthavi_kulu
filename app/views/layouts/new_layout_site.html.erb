@@ -17,6 +17,7 @@
   <%= javascript_include_tag "jquery.easing-sooper" %>
   <%= javascript_include_tag "jquery.sooperfish" %>
   <%= javascript_include_tag "image_fade" %>
+  <%= javascript_include_tag "jquery.table.addrow" %>
 
   <%= stylesheet_link_tag "style_new.css" %>
   <%= csrf_meta_tags %>
@@ -36,7 +37,7 @@
     <div id="cont">
       <div id="content_item">
         <div class="main_body">
-           <div id="mater">  
+           <div id="mater" style="overflow:auto">  
              <%= yield %>
            </div>  
              <%= render :partial => "/home/flashes"%>

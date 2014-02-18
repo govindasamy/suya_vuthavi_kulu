@@ -16,7 +16,15 @@
 			  </ul>
 		  	</li>
 		  <% end %>
-		  <li><%= link_to "Donation", donations_path %></li>
+		  <li><a href="#">Donation</a>
+			<ul>
+			  <li><%= link_to "Donation", donations_path %></li>
+			  <li><%= link_to "Expences", expences_path %></li>
+			  <li><%= link_to "Report", reports_donations_path %></li>
+			</ul>
+
+		  </li>
+
 		</ul>  
 	  </li>
 	  <li><%= link_to "Gallery", galleries_path %></li>

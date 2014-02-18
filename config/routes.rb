@@ -65,7 +65,10 @@ SuyaVuthavi::Application.routes.draw do
 
   resources :donations do
     get :search, :on => :collection
+    get :reports, :on => :collection
   end
+
+  resources :expences
 
   scope '/sites' do
     resources :sites

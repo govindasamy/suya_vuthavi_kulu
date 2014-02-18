@@ -11,9 +11,9 @@
 		<td>Amount</td>
 		<td><%= text_field :donation, :amount, :size => 7%></td>
 		<td>From Date</td>
-		<td><%= text_field :donation, :date_collected1, :size => "7", :class => "date_picker"%></td>
+		<td><%= text_field :donation, :date_collected1, :size => "7", :class => "datepicker"%></td>
 		<td>To Date</td>
-		<td><%= text_field :donation, :date_collected2, :size => "7", :class => "date_picker"%></td>
+		<td><%= text_field :donation, :date_collected2, :size => "7", :class => "datepicker"%></td>
 	</tr>
 	<tr>
 		<td colspan="8"><p style='margin-left:250px'><%= submit_tag 'Search'%></p></td>
@@ -35,11 +35,11 @@
 	</tr>	
 	<% for donation in @donations %>
 	  <tr>
-		<td><%= donation.name.capitalize %></td>
+		<td><%= donation.name.to_s.capitalize %></td>
 		<td><%= donation.donor_id %></td>
 		<td><%= donation.amount %></td>
 		<td><%= donation.date_collected %></td>
-		<td><%= donation.refered_by.capitalize %></td>
+		<td><%= donation.refered_by.to_s.capitalize %></td>
 		<td><%= link_to "Edit", edit_donation_path(donation) %></td>
 		<!--td>< % = link_to "Delete", donation_path(donation), :confirm => "Are you sure?", :method=>:delete % ></td-->
 	  </tr>	

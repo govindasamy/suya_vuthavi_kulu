@@ -1,0 +1,8 @@
+<table><tr><td><h2>New Expence</h2></td></tr></table>
+<br/>
+<%= form_for(@expence, :url => expences_path, :method => "post") do %>
+  <%= hidden_field_tag "max_row", "1" %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

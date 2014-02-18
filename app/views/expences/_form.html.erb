@@ -1,16 +1,12 @@
 <table id="table_style">
 	<tr>
-		<th>Donor Name </th>
+		<th>Date </th>
 		<th>Amount  </th>
-		<th>Referd By  </th>
-		<th>Donated Date  </th>
 		<th>Description  </th>			
 	</tr>
 	<tr>
-		<td><%= text_field :donation, :name, :size => "7", :class => "count" %></td>
-		<td><%= text_field :donation, :amount, :size => "7" %></td>
-		<td><%= text_field :donation, :refered_by, :size => "7" %></td>
 		<td><%= text_field :donation, :date_collected, :size => "7", :class => "datepicker" %></td>
+		<td><%= text_field :donation, :amount, :size => "7", :class => "count" %></td>
 		<td><%= text_field :donation, :description, :size => "7" %></td>
 		<td><%= button_tag "Add", :type=> "button", :class=>"addRow", :onclick => "count_click_add();" %></td>
 		<td><%= button_tag "Delete", :type=> "button", :class=>"delRow", :onclick => "count_click_del();" %></td>
