@@ -8,7 +8,7 @@ class ExpencesController < ApplicationController
   end  
 
   def new
-    @expence = Expence.new
+    @expence = Donation.new
   end
 
   def create
