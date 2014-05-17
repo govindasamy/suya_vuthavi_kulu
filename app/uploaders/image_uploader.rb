@@ -18,7 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   def store_dir
-   "mangudi/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+   "#{GlobalBucket}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
 
