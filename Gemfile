@@ -35,6 +35,9 @@ gem 'rufus-scheduler'
 gem "rmagick"
 
 gem 'carrierwave'
+gem "fog"
+
+gem "aws-s3"
 
 # gem 'whenever', :require => false
 
