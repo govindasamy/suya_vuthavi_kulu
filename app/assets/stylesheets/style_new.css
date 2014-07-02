@@ -539,11 +539,11 @@ ul#nav {
   float: left;
 }
 #name{
-	color: #fff;
+	color: #A1B2D5;
 float: left;
-width: 500px;
-margin: -76px 261px;
-font-size: 50px;
+width: 800px;
+margin: -66px 166px;
+font-size: 28px;
 }
 ul#nav ul { 
   /*background: url(../images/menu_hover.png) repeat;*/
