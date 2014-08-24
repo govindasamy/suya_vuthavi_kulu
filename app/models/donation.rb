@@ -1,6 +1,8 @@
 class Donation < ActiveRecord::Base
   # validates :name,:donor_id,:amount, :presence => true
 
+  belongs_to :event
+
   def Donation.create_donation(params)
     last = Donation.where("donor_id is not null").last
     last_donor_id = last.donor_id.to_s.split("DNR") if !last.nil?

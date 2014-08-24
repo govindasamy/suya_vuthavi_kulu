@@ -1,0 +1,7 @@
+<table><tr><td><h2>New Event</h2></td></tr></table>
+<br/>
+<%= form_for(@event, :url => events_path, :method => "post") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

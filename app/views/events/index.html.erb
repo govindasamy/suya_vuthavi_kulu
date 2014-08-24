@@ -1,0 +1,17 @@
+<table><tr><td><H2>Event Details</H2></td></tr></table>
+<p style='margin-left:273px'><%= link_to "<button>New Event</button>".html_safe, new_event_path %>	</p>
+<table id="table_style">
+	<tr>
+		<th>Event Name</th>
+		<th>Description</th>
+		<!--th></th-->
+	</tr>	
+	<% for event in @events %>
+	  <tr>
+		<td><%= event.name %></td>
+		<td><%= event.description %></td>
+		<td><%= link_to "Edit", edit_event_path(event) %></td>
+		<!--td>< % = link_to "Delete", event_path(event), :confirm => "Are you sure?", :method=>:delete % ></td-->
+	  </tr>	
+	<% end %>
+</table>	

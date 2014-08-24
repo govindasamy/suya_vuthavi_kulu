@@ -1,27 +1,34 @@
-<table><tr><td><H2>Transactions</H2></td></tr></table>
-<table id="table_style">
-	<tr>
-		<th>date</th>
-		<th>Description</th>
-		<th>Credit</th>
-		<th>Debit</th>
-		<th>Balance</th>
-	</tr>
-	<% total = 0 %>	
-	<% for donation in @donations %>
-	  <tr>
-		<td><%= donation.date_collected.strftime("%d-%m-%Y") %></td>
-		<td><%= donation.description %></td>
-		<% if !donation.donor_id.blank? %>
-		  <% donation_amount = donation.amount %>
-		  <% total = total + donation.amount %>
-		<% else %>
-		  <% exp_amount = donation.amount %>
-		  <% total = total - donation.amount %>
-		<% end %>   
-		<td><%= donation_amount if !donation.donor_id.blank? %></td>
-		<td><%= exp_amount if donation.donor_id.blank? %></td>
-		<td><%= total %></td>
-	  </tr>	
-	<% end %>
-</table>
+<%= form_for :donation, :url=> reports_donations_path  do %>
+  <div>Event : <%= collection_select :event, :id, Event.order(:name), :id, :name, {:prompt => "--Select--"} %><%= submit_tag 'Search', :onclick => "return check_empty()"%>	
+  </div>
+<%end%>
+<br />
+<% if !@donations.blank? %>
+    <H2><%= @event.name %> Transactions</H2>
+	<table id="table_style">
+		<tr>
+			<th>Date</th>
+			<th>Description</th>
+			<th>Credit</th>
+			<th>Debit</th>
+			<th>Balance</th>
+		</tr>
+		<% total = 0 %>	
+		<% for donation in @donations %>
+		  <tr>
+			<td><%= donation.date_collected.strftime("%d-%m-%Y") %></td>
+			<td><%= donation.description %></td>
+			<% if !donation.donor_id.blank? %>
+			  <% donation_amount = donation.amount %>
+			  <% total = total + donation.amount %>
+			<% else %>
+			  <% exp_amount = donation.amount %>
+			  <% total = total - donation.amount %>
+			<% end %>   
+			<td><%= donation_amount if !donation.donor_id.blank? %></td>
+			<td><%= exp_amount if donation.donor_id.blank? %></td>
+			<td><%= total %></td>
+		  </tr>	
+		<% end %>
+	</table>
+<% end %>

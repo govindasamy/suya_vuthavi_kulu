@@ -63,12 +63,16 @@ SuyaVuthavi::Application.routes.draw do
     post :create_image, :on => :collection
   end
 
+  resources :events
+
   resources :donations do
     get :search, :on => :collection
     get :reports, :on => :collection
   end
 
-  resources :expences
+  resources :expences do
+    get :search, :on => :collection
+  end
 
   resources :sites do
     get :contact_us, :on => :collection

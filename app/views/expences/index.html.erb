@@ -1,21 +1,42 @@
-<table><tr><td><H2>Expences Details</H2></td></tr></table>
-<p><%= link_to "<button>New Expences</button>".html_safe, new_expence_path %>	</p>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<script>
+  function check_empty()
+  {
+  	if($("#event_id").val() == "") {
+      alert("Please select event.")
+      return false
+  	}
+  	
+  }
+</script>
+
+<H2>Expence Details</H2>
+<div>
+	<%= form_for :expence, :url=> search_expences_path do %>
+	  Event : <%= collection_select :event, :id, Event.order(:name), :id, :name, {:prompt => "--Select--"} %><%= submit_tag 'Search', :onclick => "return check_empty()"%>	
+	<%end%>
+	<div style="float:right;margin:-15px 25px;"><%= link_to "<button>New Expence</button>".html_safe, new_expence_path %></div>
+</div>
 <br />
-<table id="table_style">
-	<tr>
-		<th>Date</th>
-		<th>Amount</th>
-		<th>Description</th>
-		<th>Option</th>
-		<!--th></th-->
-	</tr>	
-	<% for expence in @expences %>
-	  <tr>
-		<td><%= expence.date_collected %></td>
-		<td><%= expence.amount %></td>
-		<td><%= expence.description %></td>
-		<td><%= link_to "Edit", edit_expence_path(expence) %></td>
-		<!--td>< % = link_to "Delete", expence_path(expence), :confirm => "Are you sure?", :method=>:delete % ></td-->
-	  </tr>	
-	<% end %>
-</table>
+<% if !@expences.blank? %>
+	<table id="table_style">
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>Amount</th>
+			<th>Description</th>
+			<th>Actions</th>
+			<!--th></th-->
+		</tr>	
+		<% for expence in @expences %>
+		  <tr>
+		  	<td><%= expence.name %></td>
+			<td><%= expence.date_collected.strftime("%d-%m-%Y") %></td>
+			<td><%= expence.amount %></td>
+			<td><%= expence.description %></td>
+			<td><%= link_to "Edit", edit_expence_path(expence) %></td>
+			<!--td>< % = link_to "Delete", expence_path(expence), :confirm => "Are you sure?", :method=>"delete", :remote => true % ></td-->
+		  </tr>	
+		<% end %>
+	</table>
+<% end %>

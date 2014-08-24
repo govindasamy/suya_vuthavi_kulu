@@ -1,6 +1,6 @@
-<table><tr><td><h2>Edit Expences</h2></td></tr></table>
+<h2>Edit Expence</h2>
 <br/>
-<%= form_for(@expence, :url => expence_path(@expence), :method => "put") do |f| %>
+<%= form_for(:expence, :url => expence_path(@donation), :method => "put") do |f| %>
   <%= render :partial => "form" %>
   <br/>
   <table><tr><td><%= submit_tag "Save" %></td></tr></table>
