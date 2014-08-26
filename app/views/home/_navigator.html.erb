@@ -1,34 +1,28 @@
 <nav>
 	<ul class="sf-menu" id="nav">
 	  <li><%= link_to "Home", root_url %></li>
-	  <li><a href="#">Menu</a>
-	  	<ul>
-	  	  <% if current_user %>
-		  	<li><a href="#">SVK</a>
-		      <ul>
-	    	    <% partials = {"Admin" => ["admin", "transactions", "reports"], "Normal" =>  ["reports"] } %>
-		        <% partial_list = current_user ? current_user.role_names.collect{|name| partials[name]}.flatten.compact.uniq.sort : [] %>	
-		        <% for partial in partial_list %>
-		          <li><a href="#"><%= partial.capitalize %></a>
-		             <%= render :partial => "home/"+partial %>
-		          </li>	
-		        <% end %>
-			  </ul>
-		  	</li>
-		  <% end %>
-		  <li><a href="#">Donation</a>
-			<ul>
-			  <li><%= link_to "Donation", donations_path %></li>
-			  <li><%= link_to "Expences", expences_path %></li>
-			  <li><%= link_to "Report", reports_donations_path %></li>
-			</ul>
-
-		  </li>
-
-		</ul>  
+      <li><a href="#">SSINM</a>
+		<ul>
+	      <li><%= link_to "Events", events_path %></li>
+	      <li><%= link_to "Donation Reports", reports_donations_path %></li>
+		</ul>
 	  </li>
+
+	  <% if current_user %>
+	  	<li><a href="#">SVK</a>
+	      <ul>
+    	    <% partials = {"Admin" => ["admin", "transactions", "reports"], "Normal" =>  ["reports"] } %>
+	        <% partial_list = current_user ? current_user.role_names.collect{|name| partials[name]}.flatten.compact.uniq.sort : [] %>	
+	        <% for partial in partial_list %>
+	          <li><a href="#"><%= partial.capitalize %></a>
+	             <%= render :partial => "home/"+partial %>
+	          </li>	
+	        <% end %>
+		  </ul>
+	  	</li>
+	  <% end %>
+
 	  <li><%= link_to "Gallery", galleries_path %></li>
-	  <li><%= link_to "Events", events_path %></li>
 	  <li><%= link_to "About us", about_us_sites_path %></li>
 	  <li><%= link_to "Contact us", contact_us_sites_path %></li>
 	  <% unless user_signed_in? %>

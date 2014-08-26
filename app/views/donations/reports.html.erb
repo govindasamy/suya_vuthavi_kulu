@@ -1,10 +1,16 @@
-<%= form_for :donation, :url=> reports_donations_path  do %>
-  <div>Event : <%= collection_select :event, :id, Event.order(:name), :id, :name, {:prompt => "--Select--"} %><%= submit_tag 'Search', :onclick => "return check_empty()"%>	
-  </div>
-<%end%>
+<div>
+	<%= form_for :donation, :url=> reports_donations_path  do %>
+	  Event : <%= collection_select :event, :id, Event.order(:name), :id, :name, {:prompt => "--Select--"} %><%= submit_tag 'Search', :onclick => "return check_empty()"%>	
+	<%end%>
+	<% if current_user %>
+	  <div style="float:right;margin:-15px 25px;"><%= link_to "<button>Expences</button>".html_safe, expences_path %></div>
+	  <div style="float:right;margin:-15px 100px;"><%= link_to "<button>Donations</button>".html_safe, donations_path %></div>
+	<% end %>
+</div>
+
 <br />
 <% if !@donations.blank? %>
-    <H2><%= @event.name %> Transactions</H2>
+    <H2><%= @event.name %> Donations and Expences</H2>
 	<table id="table_style">
 		<tr>
 			<th>Date</th>

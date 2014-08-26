@@ -1,7 +1,7 @@
 class DonationsController < ApplicationController
  
   require 'time'
-  skip_before_filter :authenticate_user!, :only => [:index]
+  skip_before_filter :authenticate_user!, :only => [:index, :reports]
 
   def index
   	@donations = [] #Donation.where("donor_id is not null").order("name")
