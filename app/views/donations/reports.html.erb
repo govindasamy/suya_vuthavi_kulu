@@ -13,16 +13,21 @@
 			<th>Debit</th>
 			<th>Balance</th>
 		</tr>
+		<% credit = 0 %>
+		<% debit = 0 %>
 		<% total = 0 %>	
 		<% for donation in @donations %>
 		  <tr>
 			<td><%= donation.date_collected.strftime("%d-%m-%Y") %></td>
-			<td><%= donation.description %></td>
+			<% description =  donation.donor_id.blank? ? donation.description : donation.name.to_s + " " + donation.description.to_s %>
+			<td><%= description %></td>
 			<% if !donation.donor_id.blank? %>
 			  <% donation_amount = donation.amount %>
+			  <% credit = credit + donation.amount %>
 			  <% total = total + donation.amount %>
 			<% else %>
 			  <% exp_amount = donation.amount %>
+			  <% debit = debit + donation.amount %>
 			  <% total = total - donation.amount %>
 			<% end %>   
 			<td><%= donation_amount if !donation.donor_id.blank? %></td>
@@ -31,4 +36,21 @@
 		  </tr>	
 		<% end %>
 	</table>
+    </br>
+	<table>
+		<tr>
+		  <td>Total Income</td>
+		  <td>:<b><%= credit %></b></td>	
+		</tr>
+		<tr>
+		  <td>Total Expense </td>
+		  <td>:<b><%= debit %></b></td>	
+		</tr>
+		<tr><td colspan="2">-----------------------</td></tr>
+		<tr>
+		  <td>Balance</td>
+		  <td>:<b><%= credit - debit %></b></td>	
+		</tr>
+	</table>	
+
 <% end %>
