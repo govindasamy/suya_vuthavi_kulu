@@ -4,12 +4,14 @@
 	<tr>
 		<th>Event Name</th>
 		<th>Description</th>
+		<th>Options</th>
 		<!--th></th-->
 	</tr>	
 	<% for event in @events %>
 	  <tr>
 		<td><%= event.name %></td>
 		<td><%= event.description %></td>
+		<td><%= link_to "Money Details", reports_donations_path(:event_id => event.id) %></td>
 		<td><%= link_to "Edit", edit_event_path(event) %></td>
 		<!--td>< % = link_to "Delete", event_path(event), :confirm => "Are you sure?", :method=>:delete % ></td-->
 	  </tr>	

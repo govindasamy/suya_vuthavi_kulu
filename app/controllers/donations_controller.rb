@@ -66,9 +66,10 @@ class DonationsController < ApplicationController
   end
 
   def reports
-    if !params[:event].blank?
-      @event = Event.find(params[:event][:id])
-      @donations = Donation.where(:event_id => params[:event][:id]).order("date_collected, id") 
+    if !params[:event].blank? || !params[:event_id].blank? 
+      event_id = params[:event_id].blank? ? params[:event][:id] : params[:event_id]
+      @event = Event.find(event_id)
+      @donations = Donation.where(:event_id => event_id).order("date_collected, id") 
     end 
   end  
 
