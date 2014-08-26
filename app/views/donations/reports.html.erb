@@ -2,7 +2,7 @@
 	<%= form_for :donation, :url=> reports_donations_path  do %>
 	  Event : <%= collection_select :event, :id, Event.order(:name), :id, :name, {:prompt => "--Select--"} %><%= submit_tag 'Search', :onclick => "return check_empty()"%>	
 	<%end%>
-	<% if current_user %>
+	<% if current_user && current_user.role_names.include?("Admin") %>
 	  <div style="float:right;margin:-15px 25px;"><%= link_to "<button>Expences</button>".html_safe, expences_path %></div>
 	  <div style="float:right;margin:-15px 100px;"><%= link_to "<button>Donations</button>".html_safe, donations_path %></div>
 	<% end %>
