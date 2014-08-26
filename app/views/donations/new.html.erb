@@ -4,5 +4,14 @@
   <%= hidden_field_tag "max_row", "1" %>
   <%= render :partial => "form" %>
   <br/>
-  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+  <table><tr><td><%= submit_tag "Save", :onclick => "return validation();" %></td></tr></table>
 <% end %>
+
+<script>
+  function validation(){
+  	if($("#event_id").val() == ""){
+  	  alert("Please select event.")	
+  	  return false;
+  	}
+  }
+</script>
