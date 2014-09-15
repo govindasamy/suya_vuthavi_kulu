@@ -32,7 +32,7 @@
 			<td><%= donation.name.to_s.capitalize %></td>
 			<td><%= donation.donor_id %></td>
 			<td><%= donation.amount %></td>
-			<td><%= donation.date_collected.strftime("%d-%m-%Y") %></td>
+			<td><%= donation.date_collected.strftime("%d-%m-%Y") if !donation.date_collected.blank? %></td>
 			<td><%= donation.refered_by.to_s.capitalize %></td>
 			<td><%= link_to "Edit", edit_donation_path(donation) %></td>
 			<!--td>< % = link_to "Delete", donation_path(donation), :method=>:delete, :confirm => "Are you sure?" % ></td-->
