@@ -20,8 +20,24 @@
   <%= javascript_include_tag "jquery.table.addrow" %>
 
   <%= stylesheet_link_tag "style_new.css" %>
+  <%= stylesheet_link_tag 'flash_alert' %>
   <%= csrf_meta_tags %>
 </head>
+<% if !flash[:notice].blank? %>
+  <div class = "flash_success flash_message">
+    <%= flash[:notice] %>
+  </div>  
+<% end %>   
+<% if !flash[:error].blank? %>
+  <div class = "flash_error flash_message"> 
+    <%= flash[:error] %>
+  </div>   
+<% end %>   
+<% if !flash[:alert].blank? %>
+  <div class = "flash_alert flash_message">
+    <%= flash[:alert] %>
+  </div>  
+<% end %>  
 <body>
   <header>
     <div id="main">
@@ -58,6 +74,28 @@
   $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true,changeYear: true });
   });  
+
+  function showMessage(type){
+    $('.'+type).animate({top:"0"}, 500);
+    setTimeout(function(){
+      $('.'+type).animate({top: -$('.'+type).outerHeight()}, 500);
+    }, 3000)
+    
+  }
+
+  $(document).ready(function(){
+    var myMessages = ['flash_info','flash_warning','flash_error','flash_success','flash_alert'];
+
+    // Show message
+    for(var i=0;i<myMessages.length;i++){
+      showMessage(myMessages[i]);
+    }
+
+    // Hide message on click
+    $('.flash_message').click(function(){
+      $(this).animate({top: -$(this).outerHeight()}, 500);
+    });          
+  });
 
 
 </script>
