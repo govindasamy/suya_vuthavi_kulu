@@ -1,5 +1,12 @@
 class ReportsController < ApplicationController
   
+  skip_before_filter :authenticate_user!
+
+  before_filter :only => [:transactions, :transaction_details], :if => Proc.new{ !current_user || !current_user.role_names.include?("Admin") } do
+    flash[:error] = "Need admin permission."
+    redirect_to root_url
+  end
+
   def loan_details
   	@groups =Group.order("name")
   end	

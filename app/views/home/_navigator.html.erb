@@ -8,11 +8,11 @@
 		</ul>
 	  </li>
 
-	  <% if current_user %>
+	  <!--% if current_user %-->
 	  	<li><a href="#">SVK</a>
 	      <ul>
     	    <% partials = {"Admin" => ["admin", "transactions", "reports"], "Normal" =>  ["reports"] } %>
-	        <% partial_list = current_user ? current_user.role_names.collect{|name| partials[name]}.flatten.compact.uniq.sort : [] %>	
+	        <% partial_list = current_user ? current_user.role_names.collect{|name| partials[name]}.flatten.compact.uniq.sort : ["reports"] %>	
 	        <% for partial in partial_list %>
 	          <li><a href="#"><%= partial.capitalize %></a>
 	             <%= render :partial => "home/"+partial %>
@@ -20,7 +20,7 @@
 	        <% end %>
 		  </ul>
 	  	</li>
-	  <% end %>
+	  <!--% end %-->
 
 	  <li><%= link_to "Gallery", galleries_path %></li>
 	  <li><%= link_to "About us", about_us_sites_path %></li>
