@@ -6,4 +6,5 @@ class ChangeAmountDatatypeOnDonations < ActiveRecord::Migration
   def down
     change_column :donations, :amount, :integer, :default => nil
   end
+  
 end
