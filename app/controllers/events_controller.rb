@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
  
-  skip_before_filter :authenticate_user!, :only => [:index]
+  skip_before_filter :authenticate_user!, :only => [:index, :new, :create, :edit, :update, :destroy]
 
   before_filter :only => [:new, :create, :edit, :update, :destroy], :if => Proc.new{ !current_user || !current_user.role_names.include?("Admin") } do
     flash[:error] = "Need admin permission"
