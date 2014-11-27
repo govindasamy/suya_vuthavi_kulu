@@ -1,13 +1,9 @@
 <h3 style='text-align:center'>Transaction Details </h3>
 <br/>
 <table>
-  <% if current_user.role_names.include?("Admin") %>
-    <tr>
-      <th>User : <%= collection_select :user, :user_id, User.all.sort{|s,s1| s.full_name <=> s1.full_name}, :id, :full_name, {:prompt => "Select"} %></th>
-    </tr>
-  <% else %>
-    <%= hidden_field :user, :user_id , :value => current_user.id %>   
-  <% end %>
+  <tr>
+    <th>User : <%= collection_select :user, :user_id, User.all.sort{|s,s1| s.full_name <=> s1.full_name}, :id, :full_name, {:prompt => "Select"} %></th>
+  </tr>
   <tr>
     <th>
        From : <%= text_field :user, :from_date, :size => "8", :class => "datepicker", :value => Date.today.strftime("%d-%m-%Y"), :readonly => true %>
