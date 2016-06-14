@@ -1,0 +1,16 @@
+<table><tr><td><H2>Location Details</H2></td></tr></table>
+<p style='margin-left:273px'><%= link_to "<button>New Location</button>".html_safe, new_mutharaiyar_location_path %>	</p>
+<table id="table_style">
+	<tr>
+		<th>Name</th>
+		<th>District</th>
+	</tr>	
+	<% for location in @locations %>
+	  <tr>
+		<td><%= location.name %></td>
+		<td><%= location.district %></td>
+		<td><%= link_to "Edit", edit_mutharaiyar_location_path(location) %></td>
+		<!--td>< % = link_to "Delete", bank_path(bank), :confirm => "Are you sure?", :method=>:delete % ></td-->
+	  </tr>	
+	<% end %>
+</table>	

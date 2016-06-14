@@ -1,0 +1,7 @@
+<table><tr><td><h2>New Bank</h2></td></tr></table>
+<br/>
+<%= form_for(@member, :url => mutharaiyar_members_path, :method => "post") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

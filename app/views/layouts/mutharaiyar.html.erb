@@ -1,0 +1,344 @@
+!!! 1.0 Strict
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en-us', 'lang' => 'en-us', 'xmlns:fb' => "http://ogp.me/ns/fb#", 'id' => 'regroup'}
+  %head
+    %title
+      Regroup :
+      - if params[:controller].eql?('static')
+        Next-Generation Group Communications Platform; Enterprise Intranet; Mailing List Manager; and Emergency Messaging
+      - else
+        = @page_title if @page_title
+
+    %meta{ 'name' => 'verify-v1', :content => "" }
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
+    - keywords = meta_keywords
+    - description = meta_description
+    %meta{ 'name' => 'Keywords', :content => keywords }
+    %meta{ 'name' => 'Description', :content => description}
+    %meta{ 'name' => 'summary', :content => 'www.regroup.com : mailing list manager - to manage all mailing, emergency messaging systems - for higher education alerts. listserv software - used for list serve and school emergency notification system' }
+    %meta{ 'name' => 'keyphrase', :content => 'www.regroup.com : blackboard connect-ed pricing, school emergency notification system, yammer, rave mobile safety, datatel, sungard higher education, orgsync, k12 alerts, and e2campus ' }
+    %meta{ 'name' => 'abstraction', :content => 'mailing list manager, emergency messaging systems and school emergency notification system ' }
+    %meta{ 'name' => 'Author', :content => 'info@regroup.com' }
+    %meta{ 'name' => 'copyright', :content => 'Copyright 2010' }
+    %meta{ 'name' => 'Designer', :content => 'Regroup Inc.' }
+    %meta{ 'name' => 'msnbot', :content => 'noodp' }
+    %meta{ 'name' => 'viewport', :content => 'width=device-width, initial-scale=1' }
+    = favicon_link_tag 'favicon-16x16.png'
+
+    - map_mode = (["map_infos","topics"].include?(params[:controller]) && ["new", "create", "edit", "index"].include?(params[:action]))
+    - if map_mode
+      %link{ :rel=>"stylesheet", :href=>"//js.arcgis.com/3.9/js/dojo/dijit/themes/claro/claro.css"}
+      %link{ :rel=>"stylesheet", :href=>"//js.arcgis.com/3.9/js/esri/css/esri.css"}
+    
+    = stylesheet_link_tag "bootstrap.min.css", :media => 'screen, projection'
+    = stylesheet_link_tag "screen.css", "networks.css", "groups.css", "master.css", "occc_embed.css", "tabs.css", :media => 'screen, projection'
+    = stylesheet_link_tag "blueprint/print.css", :media => 'print'
+    = stylesheet_link_tag 'kampyle/k_button', :media => 'screen'
+    - if (["custome_devise/registrations","topics"].include?(params[:controller]) && ["new", "create"].include?(params[:action]))
+      = stylesheet_link_tag 'jquery/jquery-ui-1.10.0.custom', :media => 'screen, projection'
+    - else
+      = stylesheet_link_tag 'ui-dialog', :media => 'screen, projection'
+
+    /[if lt IE 8]
+      = stylesheet_link_tag "IE/ie_fix_1.css", 'blog.css', :media => 'screen'
+
+    = stylesheet_link_tag 'default', "font-awesome.min"
+
+    - if map_mode
+      %script{ :src=>"https://js.arcgis.com/3.9/", :type=>"text/javascript"}
+    = javascript_include_tag 'application.js'
+    = javascript_include_tag 'tooltipster/jquery.tooltipster.min.js'
+
+    = stylesheet_link_tag "colorPicker", :media => 'screen, projection'
+    = stylesheet_link_tag "jquery/jquery.crossSelect", :media => 'screen, projection'
+
+    = stylesheet_link_tag "tooltipster"
+    = stylesheet_link_tag "application.css"
+    = stylesheet_link_tag "bootstrap_and_overrides.css", :media => 'screen, projection'
+    = stylesheet_link_tag 'flash_alert'
+		
+
+    = csrf_meta_tag
+
+  %body
+    #fb-root
+    :javascript
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '#{FB_APP_ID}', // App ID
+          channelUrl : '//#{request.host}/channel.html', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+
+        // Additional initialization code here
+      };
+
+      // Load the SDK Asynchronously
+      (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+    - hide_tabs = session[:network] && true.eql?(session[:network][:hide_tabs]) && current_user && current_user.is_admin?(session[:network][:id]).nil?
+    - ldap = hide_tabs || params[:ldap] || params[:a]
+    = render "/common/flash_and_error_messages"
+    .navbar.navbar-default.navbar-static-top.no-bottom-margin.nav-bar-top1
+      .container.no-padding
+        .col-lg-12.col-sm-12.col-md-12.col-xs-12.no-padding
+          - hide_tabs = session[:network] && true.eql?(session[:network][:hide_tabs]) && current_user && current_user.is_admin?(session[:network][:id]).nil?
+          - ldap = hide_tabs || params[:ldap] || params[:a]
+
+          .col-lg-4.col-md-4.col-sm-4.col-xs-12
+            .facebook-info
+              - if user_signed_in? && !current_user.nil?
+                %a{ :href => "#{(ldap || (["signup2"].include?(params[:action]) && params[:controller].eql?("users")) || (!current_user.show_networks_and_create_group? && ["utbeta", "utexas", "du", "austincc"].include?(current_user.primary_network.coded_name))) ? '#' : user_path(current_user)}"}
+                  Welcome,
+                  == #{current_user.get_full_name}!
+          .col-lg-8.col-md-8.col-sm-8.col-xs-12
+            %ul.nav.navbar-nav.right.header-navigation-links
+              - unless (user_signed_in? || (params[:controller] == 'networks' && params[:action] == 'login1'))
+                %li
+                  - if !(["custome_devise/registrations", "custome_devise/sessions"].include?(params[:controller]) && params[:action] == "new")
+                    - s_url = ("signup2".eql?(params[:action]) && "users".eql?(params[:controller])) ? signup2_path : signup_path
+                    = link_to 'Sign In', s_url, :id => 'signup' 
+                  - if !session[:network].nil? && !session[:network][:name].eql?("tru")
+                    |&nbsp;
+                    = !session[:network].nil? && session[:network][:name].eql?("cotcosunewark") ? "Help Desk: 740-366-9244"  :  "Call: (775) GRO-UP10"
+              - if session[:origin_email].present?
+                %li
+                  = link_to 'Revert to Admin Login', revert_login_path
+              - elsif user_signed_in? && current_user.is_super_login_user?
+                - if user_signed_in? && User::FTP_LOGIN_USERS.include?(current_user.email)
+                  %li
+                    = link_to 'New ftp account', new_ftp_account_path
+                %li
+                  = link_to 'Super Login', super_login_path
+              - if !ldap && !(["signup2"].include?(params[:action]) && params[:controller].eql?("users"))
+                - if current_user && (current_user.show_networks_and_create_group? || !["utbeta", "utexas", "du"].include?(current_user.primary_network.coded_name))
+                  %li
+                    = link_to 'Preferences', :controller => "/preferences" , :id => 'preferences' if user_signed_in?
+              - if user_signed_in?
+                %li
+                  = link_to 'Help', "http://help.regroup.com/", :target => "_blank"
+                %li
+                  = link_to 'Log Out', signout_path, :id => 'logout'		  
+		          
+    .navbar.navbar-default.nav-bar-top2
+      .container
+        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .logo-bar
+          - n_op = session[:network][:option] unless session[:network].blank?
+          - if n_op && n_op.logo_uploaded
+            - show_logo = !ldap && !(Network.current?(session[:network], "occc") && ["signup", "signup2"].include?(params[:action]) && params[:controller].eql?("users"))
+            - show_logo = show_logo && !(["signup2"].include?(params[:action]) && params[:controller].eql?("users"))
+            %a.navbar-brand{ :href => "#{show_logo ? '/' : '#'}", :class => 'logo'}
+              - url = "https://#{GlobalBucket}.s3.amazonaws.com#{session[:network][:logo_url]}?pf=#{rand}"
+              %img{:src => url, :alt => 'regroup', :onerror => "$(this).attr('src', '/assets/logo.png')"}
+            .float-right.padding-right-5
+              Powered By
+              = link_to 'Regroup.com', welcome_path
+          - else
+            / .float-right.padding-top-10 &nbsp;
+            %a.navbar-brand{ :href => "/", :class => 'logo', :style => "margin-top:10px"}
+              %img{:src => '/assets/logo.png', :alt => 'regroup'}
+        
+        .col-sm-3.col-md-3.pull-right.search-padding
+          = form_for :group, :url => "/search", :method => :get, :html => {:id => "search-up-top", :class => "navbar-form"} do
+            .input-group
+              %input.form-control{:name => "query", :id => 'query', :placeholder => "Search", :type => "text"}
+                .input-group-btn
+                  %button.btn.btn-default{:type => "submit"}
+                    %i.fa.fa-search
+				
+        .navbar-collapse.collapse.navbar-responsive-collapse.header-tabs
+          %ul.nav.navbar-nav.cus-navbar
+            - if user_signed_in? && current_user.show_networks_and_create_group?
+              %li.dropdown
+                %a{:href => "javascript:void(0);", :class => "dropdown-toggle", "data-toggle".to_sym => "dropdown", :role => "button", "aria-haspopup".to_sym => "true", "aria-expanded".to_sym => "false"}
+                  My Network
+                %ul{:class => "dropdown-menu"}
+                  - current_user.user_networks.select{|un| un.network.is_visible?(current_user) }.each_with_index do |user_network, index|
+                    %li
+                      = link_to user_network.network.name , network_path(user_network.network)
+                    - if index < current_user.user_networks.select{|un| un.network.is_visible?(current_user) }.count - 1
+                      %li.divider{:role => "separator"}
+            %li.dropdown
+              - submenu_condition = current_user && ["utbeta","utexas", "du","austincc"].include?(current_user.primary_network.coded_name)
+              %a{:href => "#{!submenu_condition ? 'javascript:void(0);': '/topics/new'}", :class => "dropdown-toggle", "data-toggle".to_sym => "dropdown", :role => "button", "aria-haspopup".to_sym => "true", "aria-expanded".to_sym => "false"}
+                Post a message
+              - unless submenu_condition
+                %ul{:class => "dropdown-menu"}
+                  %li
+                    = form_for :topic, :url => "/topics/new", :method => :get, :html => {:id => 'standard-form'} do
+                      = hidden_field_tag :type, 'web'
+                    %a{:href => '#', :onclick => "$('#standard-form').submit();"} Standard
+                  - unless ["sacredheart"].include?(current_user.primary_network.coded_name)
+                    %li.divider{:role => "separator"}
+                    %li
+                      = form_for :topic, :url => "/topics/new", :method => :get, :html => {:id => 'voice-form'} do
+                        = hidden_field_tag :type, 'voice'
+                      %a{:href => '#', :onclick => "$('#voice-form').submit();"} Voice Broadcast
+                  - if current_user.primary_network.ivr_mode?
+                    %li.divider{:role => "separator"}
+                    %li
+                      = form_for :topic, :url => "/topics/new", :method => :get, :html => {:id => 'ivr-form'} do
+                        = hidden_field_tag :type, 'ivr'
+                      %a{:href => '#', :onclick => "$('#ivr-form').submit();"} Interactive Poll
+                  - if current_user && current_user.primary_network.enable_ipaws?
+                    %li.divider{:role => "separator"}
+                    %li
+                      %a{:href => '/caps/new'} IPAWS
+                      
+            - if user_signed_in? && current_user.show_networks_and_create_group?          
+              %li= link_to "Create a group".html_safe, new_group_path
+            %li= link_to "Find a group".html_safe, find_groups_path, :class => "groups", :method => :post
+            - if user_signed_in? && !!current_user.user_networks.administrators.first
+              %li.dropdown
+                %a{:href => "javascript:void(0);", :class => "dropdown-toggle", "data-toggle".to_sym => "dropdown", :role => "button", "aria-haspopup".to_sym => "true", "aria-expanded".to_sym => "false"}
+                  Admin Settings
+                %ul{:class => "dropdown-menu"}
+                  - current_user.user_networks.includes(:network).administrators.each_with_index do |user_network, index|
+                    %li
+                      %p.network_name
+                        = user_network.network.name
+                    %li
+                      = link_to ' Settings', edit_network_path(user_network.network)
+                    %li
+                      = link_to 'Pending groups: ' + user_network.network.group_approval_requests.count.to_s, network_group_approval_requests_path(user_network.network), :class => "pending-groups-count-#{user_network.network.coded_name}"
+                    - if index < current_user.user_networks.administrators.count - 1
+                      %li.divider{:role => "separator"}
+				
+    .container.site-content
+      .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+          = yield
+          = csrf_meta_tags
+
+    - if request.host.include?'www'
+      .footer
+        %ul
+          %li.borderless
+            &#169; Regroup
+            = Date.today.year 
+          %li
+            = link_to 'Home', '/'
+          %li
+            = link_to 'About', '/welcome/about'
+          %li
+            = link_to 'Features & Pricing', '/welcome/product'
+          %li
+            = link_to 'Schools', '/welcome/clients#education'
+          /  %li
+          /   = link_to 'Companies', url(:controller => :static, :action => :companies)
+          %li
+            = link_to 'Organizations', '/welcome/clients#corporate'
+          %li
+            = link_to 'Blog', '/welcome/blog'
+          / %li
+          /   = link_to 'FAQ', url(:controller => :static, :action => :faq)
+          %li
+            = link_to 'Privacy', 'welcome/terms-of-use-agreement'
+          %li
+            = link_to 'Legal', '/welcome/legal'
+          %li.borderless
+            = link_to 'Contact', '/welcome/contact-us'
+    - else
+      :css
+        body{margin-bottom:0px;}
+
+    :javascript
+      function fb_login(url){
+        fb_login_after_logout(url)
+      }
+
+      function fb_login1(url){
+        FB.getLoginStatus(function(response) {
+          if (response && response.status === 'connected') {
+            if(!confirm("The browser already connected with one profile. To continue with same profile click 'OK' to connect with another click 'Cancel'")){
+              FB.logout(function(response) {
+            window.location.reload()
+              });
+            }
+            else{
+              fb_login_after_logout(url)
+            }
+          }
+          else
+          {
+            fb_login_after_logout(url)
+          }
+        });
+      }
+
+      function fb_login_after_logout(url)
+      {
+        FB.login(function(response) {
+          if (response.authResponse) {
+            window.location = url
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        }, {scope: 'publish_actions'});
+      }
+
+      function fb_login_pages(url){
+        FB.login(function(response) {
+          if (response.authResponse) {
+            window.location = url
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        }, {scope: 'manage_pages'});
+      }
+
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    :javascript
+      var pageTracker = _gat._getTracker("#{GoogleTrackingCode}");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+
+    :javascript
+      var hblProto = document.location.protocol == 'https:' ? "https:" : "http:";
+      document.write(unescape('%3Cscript src=\'' + hblProto + '//static.olark.com/js/wc.js\' type=\'text/javascript\'%3E%3C/script%3E'));
+    :javascript
+      $('#chat').click(function () {
+        wc_init();
+        return false;
+      });
+
+    :javascript
+      function showMessage(type){
+        $('.'+type).animate({top:"0"}, 500);
+        setTimeout(function(){
+          $('.'+type).animate({top: -$('.'+type).outerHeight()}, 500);
+        }, 8000)
+        
+      }
+
+      $(document).ready(function(){
+        var myMessages = ['flash_info','flash_warning','flash_error','flash_success','flash_alert'];
+
+        // Show message
+        for(var i=0;i<myMessages.length;i++){
+          showMessage(myMessages[i]);
+        }
+
+        // Hide message on click
+        $('.flash_message').click(function(){
+          $(this).animate({top: -$(this).outerHeight()}, 500);
+        });      
+      });  
+
+      $(document).ready(function () {
+        $(".pagination").rPage();
+      });
+      $("div#tab-menu").insertBefore("div#main-container")

@@ -80,6 +80,11 @@ SuyaVuthavi::Application.routes.draw do
     get :events, :on => :collection
   end
   
+  namespace :mutharaiyar do
+    resources :locations
+    resources :members
+  end  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
