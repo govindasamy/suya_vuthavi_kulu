@@ -1,0 +1,7 @@
+<table><tr><td><h2>New Location</h2></td></tr></table>
+<br/>
+<%= form_for(@location_transaction, :url => mutharaiyar_location_transactions_path, :method => "post") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

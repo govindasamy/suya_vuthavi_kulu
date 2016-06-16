@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130175328) do
+ActiveRecord::Schema.define(:version => 20160616105040) do
 
   create_table "account_tran_details", :force => true do |t|
     t.integer  "from_account_id",                                                 :null => false
@@ -51,12 +51,20 @@ ActiveRecord::Schema.define(:version => 20140130175328) do
   create_table "donations", :force => true do |t|
     t.string   "name"
     t.string   "donor_id"
-    t.integer  "amount"
+    t.decimal  "amount",         :precision => 10, :scale => 0, :default => 0
     t.string   "refered_by"
     t.datetime "date_collected"
     t.text     "description"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
+    t.integer  "event_id"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "galleries", :force => true do |t|
@@ -98,6 +106,39 @@ ActiveRecord::Schema.define(:version => 20140130175328) do
     t.string   "image"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "location_transactions", :force => true do |t|
+    t.date     "date"
+    t.integer  "member_id"
+    t.integer  "location_id"
+    t.decimal  "credit_amount", :precision => 10, :scale => 0, :default => 0
+    t.decimal  "debit_amount",  :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.string   "district"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "bank_account_number"
+    t.string   "bank_name"
+    t.string   "branch"
+    t.string   "ifsc"
+    t.string   "account_holder"
+  end
+
+  create_table "members", :force => true do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.string   "father_name"
+    t.integer  "phone"
+    t.date     "date_of_birth"
+    t.string   "profession"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "monthly_buckets", :force => true do |t|

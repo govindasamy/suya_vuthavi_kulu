@@ -1,6 +1,6 @@
 <table><tr><td><h2>Edit Bank</h2></td></tr></table>
 <br/>
-<%= form_for(@member, :url => mutharaiyar_member_path(@bank), :method => "put") do |f| %>
+<%= form_for(@member, :url => mutharaiyar_member_path(@member), :method => "put") do |f| %>
   <%= render :partial => "form" %>
   <br/>
   <table><tr><td><%= submit_tag "Save" %></td></tr></table>

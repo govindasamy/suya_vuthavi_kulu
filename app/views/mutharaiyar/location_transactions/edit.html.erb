@@ -1,0 +1,7 @@
+<table><tr><td><h2>Edit Bank</h2></td></tr></table>
+<br/>
+<%= form_for(@location_transaction, :url => mutharaiyar_location_transaction_path(@location_transaction), :method => "put") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

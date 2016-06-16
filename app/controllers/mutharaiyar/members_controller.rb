@@ -22,6 +22,7 @@ class Mutharaiyar::MembersController < ApplicationController
   end
 
   def edit
+    @locations = Location.order("name")
   	@member = Member.find(params[:id])
   end
 
