@@ -84,6 +84,8 @@ SuyaVuthavi::Application.routes.draw do
     resources :locations
     resources :members
     resources :location_transactions
+    resources :mutharayar_transactions
+
   end  
 
   # The priority is based upon order of creation:

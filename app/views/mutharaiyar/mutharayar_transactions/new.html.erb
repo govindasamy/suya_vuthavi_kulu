@@ -1,0 +1,7 @@
+<table><tr><td><h2>New Mutharaiyar transaction</h2></td></tr></table>
+<br/>
+<%= form_for(@muth_transaction, :url => mutharaiyar_mutharayar_transactions_path, :method => "post") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>

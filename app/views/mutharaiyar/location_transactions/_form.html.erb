@@ -1,15 +1,15 @@
 <table id="table_style">
 	<tr>
 		<td>Location : </td>
-		<td><%= collection_select :location_transaction, :location_id, @locations, :id, :name %></td>
+		<td><%= collection_select :location_transaction, :location_id, @locations, :id, :name, {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Member : </td>
-		<td><%= collection_select :location_transaction, :member_id, @members, :id, :name %></td>
+		<td><%= collection_select :location_transaction, :member_id, @members, :id, :name, {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Date: </td>
-		<td><%= date_select :location_transaction, :date,:start_year => 1900, :end_year => Time.now.year, :size => "30" %></td>
+		<td><%= text_field :location_transaction, :date, :size => "8", :class => "datepicker" %></td>
 	</tr>
 	<tr>
 		<td>Credit Amount : </td>

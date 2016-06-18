@@ -1,0 +1,19 @@
+<table id="table_style">
+	<tr>
+		<td>From Location : </td>
+		<td><%= collection_select :mutharayar_transaction, :from_location_id, @locations, :id, :name %></td>
+	</tr>
+	<tr>
+		<td>To Location : </td>
+		<td><%= collection_select :mutharayar_transaction, :to_location_id, @locations, :id, :name %></td>
+	</tr>
+	<tr>
+		<td>Date: </td>
+		<td><%= text_field :mutharayar_transaction, :date, :size => "8", :class => "datepicker" %></td>
+	</tr>
+	<tr>
+		<td>Amount: </td>
+		<td><%= text_field :mutharayar_transaction, :amount, :size => "30" %></td>
+	</tr>
+	
+</table>

@@ -1,20 +1,21 @@
-<table><tr><td><H2>Location Details</H2></td></tr></table>
-<p style='margin-left:273px'><%= link_to "<button>New Location</button>".html_safe, new_mutharaiyar_location_path %>	</p>
+<table><tr><td><H2>Location Transactions Details</H2></td></tr></table>
+<p style='margin-left:273px'><%= link_to "<button>New Location Transaction</button>".html_safe, new_mutharaiyar_location_transaction_path %>	</p>
 <table id="table_style">
 	<tr>
-		<th>Name</th>
-		<th>District</th>
+		<th>Member</th>
+		<th>Location</th>
+		<th>Date</th>
+		<th>Debit Amount</th>
+		<th>Credit Amount</th>
 	</tr>	
-	<% for location in @locations %>
+	<% for location in @location_transactions %>
 	  <tr>
-		<td><%= location.name %></td>
-		<td><%= location.district %></td>
-		<td><%= location.account_holder %></td>
-		<td><%= location.bank_name %></td>
-		<td><%= location.branch %></td>
-		<td><%= location.bank_account_number %></td>
-		<td><%= location.ifsc %></td>
-		<td><%= link_to "Edit", edit_mutharaiyar_location_path(location) %></td>
+		<td><%= location.member.name %></td>
+		<td><%= location.location.name %></td>
+		<td><%= location.date %></td>
+		<td><%= location.debit_amount %></td>
+		<td><%= location.credit_amount %></td>
+		<td><%= link_to "Edit", edit_mutharaiyar_location_transaction_path(location) %></td>
 		<!--td>< % = link_to "Delete", bank_path(bank), :confirm => "Are you sure?", :method=>:delete % ></td-->
 	  </tr>	
 	<% end %>
