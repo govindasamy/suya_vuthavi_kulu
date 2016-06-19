@@ -1,0 +1,16 @@
+<table id="table_style">
+	<tr>
+		<th>Date</th>
+		<th>From Location</th>
+		<th>To Location</th>
+		<th> Amount</th>
+	</tr>	
+	<% for mt in @results %>
+	  <tr>
+	  	<td><%= mt.date %></td>
+		<td><%= mt.from_location.try(:name) %></td>
+		<td><%= mt.to_location.try(:name) %></td>
+		<td><%= mt.amount %></td>
+	  </tr>	
+	<% end %>
+</table>

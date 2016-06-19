@@ -1,6 +1,7 @@
 class Mutharaiyar::MutharayarTransactionsController < ApplicationController
  
   def index
+    @locations = Location.order("name")
   	@mutharaiyar_transactions = MutharayarTransaction.all
   end  
 
@@ -19,6 +20,13 @@ class Mutharaiyar::MutharayarTransactionsController < ApplicationController
   	  flash[:notice] = "member was not saved"	
   	  render :action => :new
   	end 
+  end
+
+  def search
+    @results = MutharayarTransaction.where("1=1")
+    @results = @results.where(["from_location_id = ? or to_location_id = ?", params[:from_location], params[:from_location]]) if !params[:from_location].blank?
+    @results = @results.where("date BETWEEN ? AND ?",params[:from_date].to_date,params[:to_date].to_date) if !params[:from_date].blank? && !params[:to_date].blank?
+    render :layout => false
   end
 
   def edit

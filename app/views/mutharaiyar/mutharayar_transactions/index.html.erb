@@ -1,26 +1,63 @@
-<table><tr><td><H2>Mtharaiyar Transaction Details</H2></td></tr></table>
-<p style='margin-left:273px'><%= link_to "<button>New Mutharaiyar Transaction</button>".html_safe, new_mutharaiyar_mutharayar_transaction_path %></p>
-
 <%= link_to "Locations", mutharaiyar_locations_path %>
 |
 <%= link_to "Members", mutharaiyar_members_path %>
 |
 <%= link_to "Location Transactions", mutharaiyar_location_transactions_path %>
+
+<table><tr><td><H2>Mtharaiyar Transaction Details</H2></td></tr></table>
+<%= link_to "<button>New Mutharaiyar Transaction</button>".html_safe, new_mutharaiyar_mutharayar_transaction_path %>
+<%= link_to "<button>search</button>".html_safe, 'javascript:void(0)',:class=>"open_tab" %>
+<div class='show_tab' style="display:none;">
+	<%= form_for :mutharayar_transaction, :url => search_mutharaiyar_mutharayar_transactions_path do %>
+  <table>
+	<tr>
+	  <td>Location : <%= collection_select :mutharayar_transaction, :from_location, @locations, :id, :name, :prompt => "Select" %></td>
+	  <td>Date From: <%= text_field  :mutharayar_transaction,:from_date, :size => "8", :class => "datepicker" %></td>
+	  <td>To : <%= text_field  :mutharayar_transaction,:to_date, :size => "8", :class => "datepicker" %></td>
+	  <td><%= submit_tag "search" ,:class=>"ajr"%></td>
+	</tr> 
+  </table>	
+<%end%>	
+<br/>
+
+</div>
+<div class="result">
 <table id="table_style">
 	<tr>
+		<th>Date</th>
 		<th>From Location</th>
 		<th>To Location</th>
-		<th>Date</th>
 		<th> Amount</th>
 	</tr>	
 	<% for mt in @mutharaiyar_transactions %>
 	  <tr>
+	  	<td><%= mt.date %></td>
 		<td><%= mt.from_location.try(:name) %></td>
 		<td><%= mt.to_location.try(:name) %></td>
-		<td><%= mt.date %></td>
 		<td><%= mt.amount %></td>
-		<td><%= link_to "Edit", edit_mutharaiyar_location_transaction_path(mt) %></td>
-		<!--td>< % = link_to "Delete", bank_path(bank), :confirm => "Are you sure?", :method=>:delete % ></td-->
 	  </tr>	
 	<% end %>
 </table>	
+</div>
+
+<script>
+
+$(".open_tab").click(function(){
+$('.show_tab').show();
+}); 
+
+$(".ajr").click(function(e){
+	e.preventDefault()
+  
+  		$.ajax({
+		  url: '<%= search_mutharaiyar_mutharayar_transactions_path %>',
+		  data: { "from_location": $('#mutharayar_transaction_from_location').val(),"from_date":$('#mutharayar_transaction_from_date').val(),"to_date":$('#mutharayar_transaction_to_date').val()},
+		  success: function(data)
+      {
+		    $('.result').html(data);
+		  }
+		});
+  	
+  });
+
+</script>
