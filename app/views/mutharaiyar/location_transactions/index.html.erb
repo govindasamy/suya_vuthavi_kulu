@@ -1,5 +1,22 @@
 <table><tr><td><H2>Location Transactions Details</H2></td></tr></table>
-<p style='margin-left:273px'><%= link_to "<button>New Location Transaction</button>".html_safe, new_mutharaiyar_location_transaction_path %>	</p>
+<%= link_to "<button>New Location Transaction</button>".html_safe, new_mutharaiyar_location_transaction_path %>
+<%= link_to "<button>search</button>".html_safe, 'javascript:void(0)',:class=>"open_tab" %>
+<div class='show_tab' style="display:none;">
+	<%= form_for :location_transaction, :url => search_mutharaiyar_location_transactions_path do %>
+  <table>
+	<tr>
+	  <td>Location : <%= collection_select :location_transaction, :location_id, @locations, :id, :name, :prompt => "Select" %></td>
+	  <td>Member : <%= collection_select :location_transaction, :member_id, Member.all, :id, :name, :prompt => "Select" %></td>
+	  <td>Date From: <%= text_field  :location_transaction,:from_date, :size => "8", :class => "datepicker" %></td>
+	  <td>To : <%= text_field  :location_transaction,:to_date, :size => "8", :class => "datepicker" %></td>
+	  <td><%= submit_tag "search" ,:class=>"ajr"%></td>
+	</tr> 
+  </table>	
+<%end%>	
+<br/>
+
+</div>
+<div class="result">
 <table id="table_style">
 	<tr>
 		<th>Member</th>
@@ -15,8 +32,28 @@
 		<td><%= location.date %></td>
 		<td><%= location.debit_amount %></td>
 		<td><%= location.credit_amount %></td>
-		<td><%= link_to "Edit", edit_mutharaiyar_location_transaction_path(location) %></td>
-		<!--td>< % = link_to "Delete", bank_path(bank), :confirm => "Are you sure?", :method=>:delete % ></td-->
 	  </tr>	
 	<% end %>
 </table>	
+</div>
+<script>
+
+$(".open_tab").click(function(){
+$('.show_tab').show();
+}); 
+
+$(".ajr").click(function(e){
+	e.preventDefault()
+  
+  		$.ajax({
+		  url: '<%= search_mutharaiyar_location_transactions_path %>',
+		  data: { "location_id": $('#location_transaction_location_id').val(),"from_date":$('#location_transaction_from_date').val(),"to_date":$('#location_transaction_to_date').val(),"member_id":$('#location_transaction_member_id').val()},
+		  success: function(data)
+      {
+		    $('.result').html(data);
+		  }
+		});
+  	
+  });
+
+</script>

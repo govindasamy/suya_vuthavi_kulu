@@ -1,0 +1,18 @@
+<table id="table_style">
+	<tr>
+		<th>Date</th>
+		<th>Location</th>
+		<th>Member</th>
+		<th>Credit Amount</th>
+		<th>Debit Amount</th>
+	</tr>	
+	<% for mt in @results %>
+	  <tr>
+	  	<td><%= mt.date %></td>
+		<td><%= mt.location.try(:name) %></td>
+		<td><%= mt.member.try(:name) %></td>
+		<td><%= mt.credit_amount %></td>
+		<td><%= mt.debit_amount %></td>
+	  </tr>	
+	<% end %>
+</table>
