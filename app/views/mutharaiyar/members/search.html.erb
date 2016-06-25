@@ -1,0 +1,21 @@
+<table id="table_style">
+	<tr>
+		<th>Name</th>
+		<th>Father Name</th>
+		<th>Phone</th>
+		<th>Date of Birth </th>
+		<th>Profession </th>
+		<!--th></th-->
+	</tr>	
+	<% for member in @results %>
+	  <tr>
+		<td><%= member.name %></td>
+		<td><%= member.father_name %></td>
+		<td><%= member.phone %></td>
+		<td><%= member.date_of_birth %></td>
+		<td><%= member.profession %></td>
+		<td><%= link_to "Edit", edit_mutharaiyar_member_path(member) %></td>
+		<td><%= link_to "Delete", mutharaiyar_member_path(member), :confirm => "Are you sure?", :method=>:delete %></td>
+	  </tr>	
+	<% end %>
+</table>	

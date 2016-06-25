@@ -8,7 +8,11 @@ class Mutharaiyar::MembersController < ApplicationController
     @locations = Location.order("name")
     @member = Member.new
   end
-
+   def search
+    @results = Member.where("1=1")
+    @results = @results.where(["id = ?", params[:id]]) if !params[:id].blank?
+    render :layout => false
+  end
   def create
   	@member = Member.new(params[:member])
   	if @member.save

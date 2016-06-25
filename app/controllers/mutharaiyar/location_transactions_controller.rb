@@ -4,7 +4,8 @@ class Mutharaiyar::LocationTransactionsController < ApplicationController
     @locations = Location.order("name")
   	@location_transactions = LocationTransaction.all
   end  
-
+def show
+end
   def new
     @locations = Location.order("name")
     @members = Member.order("name")

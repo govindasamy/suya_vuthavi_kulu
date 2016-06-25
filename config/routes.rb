@@ -81,8 +81,12 @@ SuyaVuthavi::Application.routes.draw do
   end
   
   namespace :mutharaiyar do
-    resources :locations
-    resources :members
+    resources :locations do
+      get :search, :on => :collection
+    end
+    resources :members do
+      get :search, :on => :collection
+    end
     resources :location_transactions do
       get :search, :on => :collection
     end

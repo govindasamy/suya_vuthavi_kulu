@@ -7,7 +7,11 @@ class Mutharaiyar::LocationsController < ApplicationController
   def new
     @location = Location.new
   end
-
+  def search
+    @results = Location.where("1=1")
+    @results = @results.where(["id = ?", params[:id]]) if !params[:id].blank?
+    render :layout => false
+  end
   def create
   	@location = Location.new(params[:location])
   	if @location.save
