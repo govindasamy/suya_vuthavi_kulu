@@ -1,7 +1,7 @@
 <table><tr><td><H2>Memebr Details</H2></td></tr></table>
 <%= link_to "<button>New Member</button>".html_safe, new_mutharaiyar_member_path %>
-<%= link_to "<button>search</button>".html_safe, 'javascript:void(0)',:class=>"open_tab" %>
-<div class='show_tab' style="display:none;">
+<!--%= link_to "<button>search</button>".html_safe, 'javascript:void(0)',:class=>"open_tab" %-->
+<div class='show_tab' style="display:block;">
 	<%= form_for :member, :url => search_mutharaiyar_members_path do %>
   <table>
 	<tr>
@@ -12,31 +12,7 @@
 <%end%>	
 <br/>
 </div>
-<div class="result">
-<table id="table_style">
-	<tr>
-		<th>Location</th>
-		<th>Name</th>
-		<th>Father Name</th>
-		<th>Phone</th>
-		<th>Date of Birth </th>
-		<th>Profession </th>
-		<!--th></th-->
-	</tr>	
-	<% for member in @members %>
-	  <tr>
-	  	<td><%= member.location.name %></td>
-		<td><%= member.name %></td>
-		<td><%= member.father_name %></td>
-		<td><%= member.phone %></td>
-		<td><%= member.date_of_birth %></td>
-		<td><%= member.profession %></td>
-		<td><%= link_to "Edit", edit_mutharaiyar_member_path(member) %></td>
-		<td><%= link_to "Delete", mutharaiyar_member_path(member), :confirm => "Are you sure?", :method=>:delete %></td>
-	  </tr>	
-	<% end %>
-</table>	
-</div>
+<div class="result"></div>
 <script>
 
 $(".open_tab").click(function(){
