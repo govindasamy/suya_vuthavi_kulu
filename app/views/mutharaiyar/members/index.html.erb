@@ -5,7 +5,7 @@
 	<%= form_for :member, :url => search_mutharaiyar_members_path do %>
   <table>
 	<tr>
-	  <td>Member : <%= collection_select :member, :name, @members, :id, :name, :prompt => "Select" %></td>
+	  <td>Location : <%= collection_select :member, :name, @locations, :id, :name, :prompt => "Select" %></td>
 	  <td><%= submit_tag "search" ,:class=>"ajr"%></td>
 	</tr> 
   </table>	
@@ -15,6 +15,7 @@
 <div class="result">
 <table id="table_style">
 	<tr>
+		<th>Location</th>
 		<th>Name</th>
 		<th>Father Name</th>
 		<th>Phone</th>
@@ -24,6 +25,7 @@
 	</tr>	
 	<% for member in @members %>
 	  <tr>
+	  	<td><%= member.location.name %></td>
 		<td><%= member.name %></td>
 		<td><%= member.father_name %></td>
 		<td><%= member.phone %></td>

@@ -1,7 +1,7 @@
 class Mutharaiyar::MembersController < ApplicationController
  
   def index
-  	@members = Member.order("name")
+  	@locations = Location.order("name")
   end  
 
   def new
@@ -10,7 +10,7 @@ class Mutharaiyar::MembersController < ApplicationController
   end
    def search
     @results = Member.where("1=1")
-    @results = @results.where(["id = ?", params[:id]]) if !params[:id].blank?
+    @results = @results.where(["location_id = ?", params[:id]]) if !params[:id].blank?
     render :layout => false
   end
   def create
