@@ -1,5 +1,7 @@
 class Mutharaiyar::MembersController < ApplicationController
  
+  skip_before_filter :authenticate_user!, :only => [:index, :search]
+
   def index
   	@locations = Location.order("name")
   end  

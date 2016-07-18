@@ -1,23 +1,26 @@
 class Mutharaiyar::LocationTransactionsController < ApplicationController
  
+  skip_before_filter :authenticate_user!, :only => [:index, :search]
+
   def index
     @locations = Location.order("name")
   	@location_transactions = LocationTransaction.all
   end  
-def show
-end
+
   def new
     @locations = Location.order("name")
     @members = Member.order("name")
     @location_transaction = LocationTransaction.new
   end
-   def search
+
+  def search
     @results = LocationTransaction.where("1=1")
     @results = @results.where(["location_id = ?", params[:location_id]]) if !params[:location_id].blank?
     @results = @results.where(["member_id = ?", params[:member_id]]) if !params[:member_id].blank?
     @results = @results.where("date BETWEEN ? AND ?",params[:from_date].to_date,params[:to_date].to_date) if !params[:from_date].blank? && !params[:to_date].blank?
     render :layout => false
   end
+  
   def create
   	@location_transaction = LocationTransaction.new(params[:location_transaction])
   	if @location_transaction.save
