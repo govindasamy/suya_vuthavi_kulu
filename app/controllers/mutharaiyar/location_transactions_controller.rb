@@ -31,23 +31,25 @@ end
   end
 
   def edit
-  	@member = LocationTransaction.find(params[:id])
+     @locations = Location.order("name")
+    @members = Member.order("name")
+  	@location_transaction = LocationTransaction.find(params[:id])
   end
 
   def update
-  	@member = LocationTransaction.find(params[:id])
-  	if @member.update_attributes(params[:member])
-  	  flash[:notice] = "member was saved"	
+  	@location_transaction = LocationTransaction.find(params[:id])
+  	if @location_transaction.update_attributes(params[:location_transaction])
+  	  flash[:notice] = "location_transaction was saved"	
   	  redirect_to mutharaiyar_location_transactions_path
   	else
-  	  flash[:notice] = "member was not saved"	
+  	  flash[:notice] = "location_transaction was not saved"	
   	  render :action => :new
   	end
   end
 
   def destroy
-  	@member = LocationTransaction.find(params[:id])
-  	@member.destroy
+  	@location_transaction = LocationTransaction.find(params[:id])
+  	@location_transaction.destroy
   	redirect_to mutharaiyar_location_transactions_path
   end
 
