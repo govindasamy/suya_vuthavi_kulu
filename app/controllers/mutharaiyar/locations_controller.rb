@@ -7,7 +7,7 @@ class Mutharaiyar::LocationsController < ApplicationController
   end  
 
   def new
-    @location = Location.new
+    @location = Location.new 
   end
   def search
     @results = Location.where("1=1")
