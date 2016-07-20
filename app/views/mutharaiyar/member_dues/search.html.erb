@@ -1,0 +1,21 @@
+<table id="table_style">
+	<tr>
+		<th>Name</th>
+		<th>Location</th>
+		<th>Date </th>
+		<th>Due Date</th>
+		<th>Amount</th>
+		<!--th></th-->
+	</tr>	
+	<% for member_due in @results %>
+	  <tr>
+		<td><%= member_due.member.name %></td>
+		<td><%= member_due.location.name %></td>
+		<td><%= member_due.date %></td>
+		<td><%= member_due.due_date %></td>
+		<td><%= member_due.amount %></td>
+		<td><%= link_to "Edit", edit_mutharaiyar_member_due_path(member_due) %></td>
+		<td><%= link_to "Delete", mutharaiyar_member_due_path(member_due), :confirm => "Are you sure?", :method=>:delete %></td>
+	  </tr>	
+	<% end %>
+</table>	

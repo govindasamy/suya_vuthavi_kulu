@@ -93,6 +93,9 @@ SuyaVuthavi::Application.routes.draw do
     resources :mutharayar_transactions do
       get :search, :on => :collection
     end
+    resources :member_dues do
+      get :search, :on => :collection
+    end
 
   end  
 

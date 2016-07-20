@@ -1,0 +1,7 @@
+<table><tr><td><h2>Edit member_due</h2></td></tr></table>
+<br/>
+<%= form_for(@member_due, :url => mutharaiyar_member_due_path(@member_due), :method => "put") do |f| %>
+  <%= render :partial => "form" %>
+  <br/>
+  <table><tr><td><%= submit_tag "Save" %></td></tr></table>
+<% end %>
