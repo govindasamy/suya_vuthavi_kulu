@@ -1,7 +1,6 @@
 class CreateTableMemberDues < ActiveRecord::Migration
   def up
   	create_table :member_dues do |t|
-      t.date 		:date
       t.date 		:due_date
       t.integer    	:location_id
       t.integer    	:member_id
