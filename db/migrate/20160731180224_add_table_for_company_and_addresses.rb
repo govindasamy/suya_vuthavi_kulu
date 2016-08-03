@@ -30,6 +30,7 @@ class AddTableForCompanyAndAddresses < ActiveRecord::Migration
 
       t.timestamps
     end
+   add_column :members, :company_id, :integer
   end
 
 end

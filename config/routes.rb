@@ -96,6 +96,9 @@ SuyaVuthavi::Application.routes.draw do
     resources :member_dues do
       get :search, :on => :collection
     end
+    resources :companies do
+      get :search, :on => :collection
+    end
 
   end  
 

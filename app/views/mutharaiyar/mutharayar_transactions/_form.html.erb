@@ -1,11 +1,11 @@
 <table id="table_style">
 	<tr>
 		<td>From Location : </td>
-		<td><%= collection_select :mutharayar_transaction, :from_location_id, @locations, :id, :name %></td>
+		<td><%= collection_select :mutharayar_transaction, :from_location_id, @locations, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>To Location : </td>
-		<td><%= collection_select :mutharayar_transaction, :to_location_id, @locations, :id, :name %></td>
+		<td><%= collection_select :mutharayar_transaction, :to_location_id, @locations, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Date: </td>

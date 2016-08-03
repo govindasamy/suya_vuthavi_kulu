@@ -1,7 +1,7 @@
 <table id="table_style">
 	<tr>
 		<td>Location : </td>
-		<td><%= collection_select :member, :location_id, @locations, :id, :name %></td>
+		<td><%= collection_select :member, :location_id, @locations, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Name : </td>
@@ -20,6 +20,32 @@
 		<td><%= date_select :member, :date_of_birth,:start_year => 1900, :end_year => Time.now.year, :size => "30" %></td>
 	</tr>
 	<tr>
+		<td>Company : </td>
+		<td><%= collection_select :member, :company_id, @companies, :id, :name , {:prompt => "--select--"} %><%=link_to("Add Company",new_mutharaiyar_company_path,{id: :adcomp})%></td>
+
+	</tr>
+	<tr style="display:none">
+		<td>company Name : </td>
+		<td><%= text_field :company, :name, :size => "30" %></td>
+	</tr>
+	<tr style="display:none">
+		<td>company district : </td>
+		<td><%= text_field :compaddress, :district, :size => "30" %></td>
+	</tr>
+	<tr style="display:none">
+		<td>company state : </td>
+		<td><%= text_field :compaddress, :state, :size => "30" %></td>
+	</tr>
+	<tr style="display:none">
+		<td>company Country : </td>
+		<td><%= text_field :compaddress, :country, :size => "30" %></td>
+	</tr>
+	<tr style="display:none">
+		<td>company pin : </td>
+		<td><%= text_field :compaddress, :pin, :size => "30" %></td>
+	</tr>
+
+	<tr>
 		<td>Profession : </td>
 		<td><%= text_field :member, :profession, :size => "30" %></td>
 	</tr>
@@ -35,4 +61,30 @@
 		<td>Aadhaar Id : </td>
 		<td><%= text_field :member, :aadhaar_id, :size => "30" %></td>
 	</tr>
+	<tr>
+		<td>district : </td>
+		<td><%= text_field :address, :district, :size => "30" %></td>
+	</tr>
+	<tr>
+		<td>state : </td>
+		<td><%= text_field :address, :state, :size => "30" %></td>
+	</tr>
+	<tr>
+		<td>Country : </td>
+		<td><%= text_field :address, :country, :size => "30" %></td>
+	</tr>
+	<tr>
+		<td>pin : </td>
+		<td><%= text_field :address, :pin, :size => "30" %></td>
+	</tr>
 </table>
+<script>
+
+
+
+$("#adcomp").click(function(e){
+	e.preventDefault()
+  $("#table_style tr").show();
+  });
+
+</script>

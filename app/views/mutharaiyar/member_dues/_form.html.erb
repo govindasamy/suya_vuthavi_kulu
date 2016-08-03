@@ -1,11 +1,11 @@
 <table id="table_style">
 	<tr>
 		<td>Location : </td>
-		<td><%= collection_select :member_due, :location_id, @locations, :id, :name %></td>
+		<td><%= collection_select :member_due, :location_id, @locations, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Member : </td>
-		<td><%= collection_select :member_due, :member_id, @members, :id, :name %></td>
+		<td><%= collection_select :member_due, :member_id, @members, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Amount : </td>

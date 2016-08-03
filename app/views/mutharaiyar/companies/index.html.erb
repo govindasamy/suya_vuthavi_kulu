@@ -1,0 +1,36 @@
+<table><tr><td><H2>Memebr Details</H2></td></tr></table>
+<%= link_to "<button>New Member</button>".html_safe, new_mutharaiyar_member_path %>
+<!--%= link_to "<button>search</button>".html_safe, 'javascript:void(0)',:class=>"open_tab" %-->
+<div class='show_tab' style="display:block;">
+	<%= form_for :member, :url => search_mutharaiyar_members_path do %>
+  <table>
+	<tr>
+	  <td>Location : <%= collection_select :member, :name, @locations, :id, :name, :prompt => "Select" %></td>
+	  <td><%= submit_tag "search" ,:class=>"ajr"%></td>
+	</tr> 
+  </table>	
+<%end%>	
+<br/>
+</div>
+<div class="result"></div>
+<script>
+
+$(".open_tab").click(function(){
+$('.show_tab').show();
+}); 
+
+$(".ajr").click(function(e){
+	e.preventDefault()
+  
+  		$.ajax({
+		  url: '<%= search_mutharaiyar_members_path %>',
+		  data: { "id": $('#member_name').val()},
+		  success: function(data)
+      {
+		    $('.result').html(data);
+		  }
+		});
+  	
+  });
+
+</script>

@@ -8,6 +8,7 @@ class Mutharaiyar::MembersController < ApplicationController
 
   def new
     @locations = Location.order("name")
+    @companies = Company.order("name")
     @member = Member.new
   end
    def search
@@ -18,6 +19,7 @@ class Mutharaiyar::MembersController < ApplicationController
   def create
   	@member = Member.new(params[:member])
   	if @member.save
+      @address = Address.create(params[:address].merge(addr_type:"Member",addr_id:@member.id))
   	  flash[:notice] = "member was saved"	
   	  redirect_to mutharaiyar_members_path
   	else
