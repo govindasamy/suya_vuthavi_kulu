@@ -17,7 +17,13 @@ class Mutharaiyar::MembersController < ApplicationController
     render :layout => false
   end
   def create
-  	@member = Member.new(params[:member])
+     if params[:member][:company_id]
+    @company = Company.new(params[:company])
+    if @company.save
+      @company_address = Address.create(params[:compaddress].merge(addr_type:"Company",addr_id:@company.id))
+    end
+    end
+  	@member = !params[:company_id].blank? ? Member.new(params[:member].merge(:company_id=>@company.id)) : Member.new(params[:member])
   	if @member.save
       @address = Address.create(params[:address].merge(addr_type:"Member",addr_id:@member.id))
   	  flash[:notice] = "member was saved"	
