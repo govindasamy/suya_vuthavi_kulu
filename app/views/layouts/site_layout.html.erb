@@ -1,126 +1,163 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Mangudi Therkkuvadi</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <%= stylesheet_link_tag "style_site.css" %>
-  <!-- modernizr enables HTML5 elements and feature detects -->
-  <%= javascript_include_tag "jquery.js" %>
-  <%= javascript_include_tag "modernizr-1.5.min.js" %>
-  <%= javascript_include_tag "jquery.easing-sooper.js" %>
-  <%= javascript_include_tag "jquery.sooperfish.js" %>
-  <%= javascript_include_tag "image_fade.js" %>
-  <%= javascript_include_tag "image_slide.js" %>
+  <title>SuyaVuthaviKulu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
 
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+
+    .submenu {
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div id="main">
-    <header>
-      <div id="logo">
-         <img width="150" height="90" style="margin-left:-375px;" src="/assets/log_0.png" alt="image one" />
-      </div>
-      <div id="name">mangudi therkkuvadi</div>
-      <nav>
-        <ul class="sf-menu" id="nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="/home/about_us">About us</a></li>
-          <li><a href="another_page.html">Events</a>
-          	<ul>
-              <li><a href="#">SVK members</a></li>
-              <li><a href="#">Education</a>
-                <ul>
-                  <li><a href="#">Students</a></li>
-                  <li><a href="#">foreign employees</a></li>
-                  <li><a href="#">indian employees</a></li>
-                </ul>
-              </li>	
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Materials</a></li>
-            </ul>
-          </li>
-          <li><a href="page.html">Gallery</a></li>
-          <li><a href="#">Menu</a>
-            <ul>
-              <li><a href="#">SVK members</a></li>
-              <li><a href="#">Education</a>
-                <ul>
-                  <li><a href="#">Students</a></li>
-                  <li><a href="#">foreign employees</a></li>
-                  <li><a href="#">indian employees</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Materials</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.php">Contact Us</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
-                        <li style="float:right"><a href="#">signed in:</a></li>
-              <li style="float:right"><a href="#">signout</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div id="site_content">
-      <div id="content">
-        <ul class="slideshow">
-          <li class="show"><img width="706" height="270" src="/assets/1.jpg" alt="image one" /></li>
-          <li><img width="706" height="270" src="/assets/2.jpg" alt="image two" /></li>
-          <li><img width="706" height="270" src="/assets/3.jpg" alt="image three" /></li>
-        </ul>
-        <div id="image_des1">
-        	<ul class="image_des">
-        	<li class="show"><p>akjsbdjasjdbsahdjDGV</p></li>
-        	<li><p>a sdvsavdhjVSaHV</p></li>
-        	<li><p>a sdvsavdhjVSaHV</p></li>
-        	</ul>
-        </div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Mangudi Terkkuvadi</a>
     </div>
-        <div id="cont">
-        <div id="content_item">
-        	<div id="mater">
-          <h1>Welcome to Mangudi therkkuvadi</h1>
-          <p>
-          	11/1/1975 அன்று அன்றைய சிவகங்கை ஊராட்சி ஒன்றிய பெருந் தலைவர் திரு.சோம.அரு.இராமநாதன் செட்டியார் அவர்கள் தலைமையில் அன்றைய பாராளுமன்ற உறுப்பினர் திரு.தா.கிருஷ்ணன் அவர்கள் ஊராட்சி ஒன்றிய நடுநிலை பள்ளியாக துவங்கி வைத்தார்.
-
-பின்னர் 2004 ஆம் ஆண்டு உயர்நிலை பள்ளியாக தரம் உயர்த்தப்பட்டதால் ஊராட்சி ஒன்றிய துவக்கப் பள்ளியாக மாறியது..........
-          </p>
-                    <p>
-          	11/1/1975 அன்று அன்றைய சிவகங்கை ஊராட்சி ஒன்றிய பெருந் தலைவர் திரு.சோம.அரு.இராமநாதன் செட்டியார் அவர்கள் தலைமையில் அன்றைய பாராளுமன்ற உறுப்பினர் திரு.தா.கிருஷ்ணன் அவர்கள் ஊராட்சி ஒன்றிய நடுநிலை பள்ளியாக துவங்கி வைத்தார்.
-
-பின்னர் 2004 ஆம் ஆண்டு உயர்நிலை பள்ளியாக தரம் உயர்த்தப்பட்டதால் ஊராட்சி ஒன்றிய துவக்கப் பள்ளியாக மாறியது..........
-          </p>
-                    <p>
-          	11/1/1975 அன்று அன்றைய சிவகங்கை ஊராட்சி ஒன்றிய பெருந் தலைவர் திரு.சோம.அரு.இராமநாதன் செட்டியார் அவர்கள் தலைமையில் அன்றைய பாராளுமன்ற உறுப்பினர் திரு.தா.கிருஷ்ணன் அவர்கள் ஊராட்சி ஒன்றிய நடுநிலை பள்ளியாக துவங்கி வைத்தார்.
-
-பின்னர் 2004 ஆம் ஆண்டு உயர்நிலை பள்ளியாக தரம் உயர்த்தப்பட்டதால் ஊராட்சி ஒன்றிய துவக்கப் பள்ளியாக மாறியது..........
-          </p>
-                    <p>
-          	11/1/1975 அன்று அன்றைய சிவகங்கை ஊராட்சி ஒன்றிய பெருந் தலைவர் திரு.சோம.அரு.இராமநாதன் செட்டியார் அவர்கள் தலைமையில் அன்றைய பாராளுமன்ற உறுப்பினர் திரு.தா.கிருஷ்ணன் அவர்கள் ஊராட்சி ஒன்றிய நடுநிலை பள்ளியாக துவங்கி வைத்தார்.
-
-பின்னர் 2004 ஆம் ஆண்டு உயர்நிலை பள்ளியாக தரம் உயர்த்தப்பட்டதால் ஊராட்சி ஒன்றிய துவக்கப் பள்ளியாக மாறியது..........
-          </p>
-          </div>
-          <div id="notice"><ul>
-          	<li>hSCDAFAS</li>
-          	<li>hSCDAFAS</li>
-          	<li>hSCDAFAS</li>
-          	<li>hSCDAFAS</li>
-          </ul></div>
-          </div>
-          </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href=""> Feature <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li data-target="#ssinm"><a href="#" >SSINM</a></li>
+            <li data-target="#svk"><a href="#" >SVK</a></li>
+          </ul>
+        </li>
+        <% unless user_signed_in? %>
+          <li>&nbsp;</li>
+          <li>
+              <%= link_to signin_path do %>
+              <span class="glyphicon glyphicon-log-in"></span> Sign in
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to current_user.full_name.capitalize, user_path(current_user)%></li>
+          <li>
+            <%= link_to signout_path do %>
+              <span class="glyphicon glyphicon-log-in"></span> Sign out
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-    <footer>
-    </footer>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
   </div>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('ul.sf-menu').sooperfish();
-    });
-  </script>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+    <br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+      <br>
+
+      <div id="ssinm" class="side-menu">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#section1">Events</a></li>
+          <li><a href="#section2">Donation Reports</a></li>
+          <li><a href="#section3">Mutharaiyar</a></li>
+        </ul><br>
+      </div>
+
+      <div id="svk" class="side-menu">
+        <ul class="nav nav-pills nav-stacked">
+          <li>
+            <a href="#section1" data-toggle="collapse" data-target="#admin-submenu" >Admin <span class="caret"></span></a>
+            <div id="admin-submenu" class="submenu collapse">
+              <ul class="nav nav-pills nav-stacked">
+                <li>
+                  <a href="#">Users</a>
+                </li>
+                <li>
+                  <a href="#">Groups</a>
+                </li>
+                <li>
+                  <a href="#">Banks</a>
+                </li>
+              </ul>
+          </div>
+          </li>
+          <li><a href="#section2">Reports</a></li>
+          <li><a href="#section3">Transactions</a></li>
+        </ul><br>
+      </div>
+
+    </div>
+
+    <div class="col-sm-9">
+      <%= yield%>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+
 </body>
+
+<script type="text/javascript">
+
+  $(function(){
+    $(".side-menu").hide();
+  })
+  
+  $(".dropdown-menu li").on("click", function(){
+    var target = $(this).data('target');
+    $(".side-menu").hide();
+    $(target).show();
+  })
+
+</script>
 </html>
+
+

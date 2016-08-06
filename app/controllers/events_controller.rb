@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  layout "site_layout"
  
   skip_before_filter :authenticate_user!, :only => [:index, :new, :create, :edit, :update, :destroy]
 
