@@ -1,11 +1,11 @@
-<table><tr><td><H2>Event Details</H2></td></tr></table>
-<p style='float:right;margin:-28px 25px;'><%= link_to "<button>New Event</button>".html_safe, new_event_path %>	</p>
-<table id="table_style">
+<H2>Event Details</H2>
+<p><%= link_to "New Event".html_safe, new_event_path, :class => "btn btn-primary" %>	</p>
+<table id="table_style1" class="table table-striped">
 	<tr>
 		<th>Event Name</th>
 		<th>Description</th>
 		<th>Options</th>
-		<!--th></th-->
+		<th></th
 	</tr>	
 	<% for event in @events %>
 	  <tr>
