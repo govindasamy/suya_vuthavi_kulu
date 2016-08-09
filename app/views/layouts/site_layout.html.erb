@@ -43,6 +43,7 @@
       padding-left: 20px;
     }
   </style>
+  <%= stylesheet_link_tag "sites.css" %>
 </head>
 <body>
 
@@ -66,6 +67,9 @@
             <li data-target="#svk"><a href="#" >SVK</a></li>
           </ul>
         </li>
+       <li><%= link_to "Gallery", galleries_path %></li>
+    <li><%= link_to "About us", about_us_sites_path %></li>
+    <li><%= link_to "Contact us", contact_us_sites_path %></li>
         <% unless user_signed_in? %>
           <li>&nbsp;</li>
           <li>
@@ -102,32 +106,26 @@
 
       <div id="ssinm" class="side-menu">
         <ul class="nav nav-pills nav-stacked">
-          <li><a href="#section1">Events</a></li>
-          <li><a href="#section2">Donation Reports</a></li>
-          <li><a href="#section3">Mutharaiyar</a></li>
+          <li><%= link_to "Events", events_path %></li>
+        <li><%= link_to "Donation Reports", reports_donations_path %></li>
+        <li><%= link_to "Mutharaiyar", mutharaiyar_mutharayar_transactions_path %></li>
         </ul><br>
       </div>
 
       <div id="svk" class="side-menu">
         <ul class="nav nav-pills nav-stacked">
-          <li>
-            <a href="#section1" data-toggle="collapse" data-target="#admin-submenu" >Admin <span class="caret"></span></a>
-            <div id="admin-submenu" class="submenu collapse">
-              <ul class="nav nav-pills nav-stacked">
-                <li>
-                  <a href="#">Users</a>
-                </li>
-                <li>
-                  <a href="#">Groups</a>
-                </li>
-                <li>
-                  <a href="#">Banks</a>
-                </li>
-              </ul>
+          <% partials = {"Admin" => ["admin", "transactions", "reports"], "Normal" =>  ["reports"] } %>
+          <% partial_list = current_user ? current_user.role_names.collect{|name| partials[name]}.flatten.compact.uniq.sort : ["reports"] %>
+          <% partial_list.each_with_index do|partial,ind| %>
+            <li>
+              <a href="#section1" data-toggle="collapse" data-target="#admin-submenu<%=ind%>" ><%= partial.capitalize %> <span class="caret"></span></a>
+              <div id="admin-submenu<%=ind%>" class="submenu collapse">
+               <%= render :partial => "home/"+partial %>
           </div>
-          </li>
-          <li><a href="#section2">Reports</a></li>
-          <li><a href="#section3">Transactions</a></li>
+            </li> 
+          <% end %>
+          
+
         </ul><br>
       </div>
 

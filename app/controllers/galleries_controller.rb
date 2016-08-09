@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-
+layout "site_layout"
 skip_before_filter :authenticate_user!, :only => [:index, :images]
 
 def index

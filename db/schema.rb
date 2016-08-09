@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160616105040) do
+ActiveRecord::Schema.define(:version => 20160731180224) do
 
   create_table "account_tran_details", :force => true do |t|
     t.integer  "from_account_id",                                                 :null => false
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.datetime "updated_at",                                                        :null => false
   end
 
+  create_table "addresses", :force => true do |t|
+    t.integer  "addr_id"
+    t.string   "addr_type"
+    t.string   "country"
+    t.string   "state"
+    t.string   "district"
+    t.string   "pin"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "banks", :force => true do |t|
     t.string   "bank_name"
     t.string   "branch"
@@ -46,6 +57,12 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.string   "account_number"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "donations", :force => true do |t|
@@ -58,6 +75,14 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
     t.integer  "event_id"
+  end
+
+  create_table "dues", :force => true do |t|
+    t.date     "date"
+    t.integer  "location_id"
+    t.decimal  "amount",      :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -108,6 +133,15 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "location_members", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "location_id"
+    t.boolean  "admin",       :default => false
+    t.boolean  "super_admin", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "location_transactions", :force => true do |t|
     t.date     "date"
     t.integer  "member_id"
@@ -128,6 +162,17 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.string   "branch"
     t.string   "ifsc"
     t.string   "account_holder"
+    t.string   "panjayath"
+  end
+
+  create_table "member_dues", :force => true do |t|
+    t.date     "date"
+    t.date     "due_date"
+    t.integer  "location_id"
+    t.integer  "member_id"
+    t.decimal  "amount",      :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
 
   create_table "members", :force => true do |t|
@@ -137,8 +182,12 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.integer  "phone"
     t.date     "date_of_birth"
     t.string   "profession"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "job_description"
+    t.string   "current_location"
+    t.string   "aadhaar_id"
+    t.integer  "company_id"
   end
 
   create_table "monthly_buckets", :force => true do |t|
@@ -148,6 +197,15 @@ ActiveRecord::Schema.define(:version => 20160616105040) do
     t.decimal  "bank_final_balance", :precision => 10, :scale => 0, :default => 0
     t.datetime "created_at",                                                       :null => false
     t.datetime "updated_at",                                                       :null => false
+  end
+
+  create_table "mutharayar_transactions", :force => true do |t|
+    t.date     "date"
+    t.integer  "from_location_id"
+    t.integer  "to_location_id"
+    t.decimal  "amount",           :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "roles", :force => true do |t|
