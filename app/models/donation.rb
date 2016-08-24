@@ -1,6 +1,6 @@
 class Donation < ActiveRecord::Base
   # validates :name,:donor_id,:amount, :presence => true
-
+require 'csv'
   belongs_to :event
 
   def Donation.create_donation(params)
@@ -10,5 +10,18 @@ class Donation < ActiveRecord::Base
     donation = Donation.new(params.merge(:donor_id => new_id))
     donation.save
   end
-
+  def self.donation_import(file)
+	CSV.parse(File.read(file)).each_with_index do |row,ind|
+		if ind!=0
+			donation=Donation.create_donation(name:row[1], amount:row[2], refered_by:row[3], date_collected:row[4], description:row[5],event_id: 1)
+		end
+	end
+  end
+  def self.expansion_import(file)
+	CSV.parse(File.read(file)).each_with_index do |row,ind|
+		if ind!=0
+			donation=Donation.create_donation(name:row[1], amount:row[2], refered_by:row[3], date_collected:row[4], description:row[5],event_id: 1)
+		end
+	end
+  end
 end

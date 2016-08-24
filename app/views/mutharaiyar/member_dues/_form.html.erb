@@ -5,7 +5,9 @@
 	</tr>
 	<tr>
 		<td>Member : </td>
-		<td><%= collection_select :member_due, :member_id, @members, :id, :name , {:prompt => "--select--"} %></td>
+		<td class="htmlres">
+			<%= text_field :member_due,:member, :id=>"member_due", :size => "30" %>
+			<%#= collection_select :member_due, :member_id, @members, :id, :name , {:prompt => "--select--"} %></td>
 	</tr>
 	<tr>
 		<td>Amount : </td>
@@ -21,3 +23,44 @@
 	</tr>
 	
 </table>
+ <%@d=[]
+    a=@members
+      a.each do|s|
+        h={}
+        h["id"]=s.name
+        h["name"]=s.name
+        @d << h
+      end
+      l=sanitize(@d.to_json)%>
+
+<script>
+
+$('#member_due_location_id').on('change', function() {
+	var village = jQuery("#member_due_location_id option:selected").attr("value");
+  		$.ajax({
+		  url: '/mutharaiyar/member_dues/'+village+'/village_member',
+		  //data: { "id": $('#member_name').val()},
+		  success: function(data)
+      {
+		    $(".htmlres").replaceWith(data);
+		  }
+		});
+  	
+});
+</script>
+
+
+<script type="text/javascript">
+$(function (){
+var availableTags = <%=l%>;
+  $('#member_due').tokenInput(availableTags, { 
+      preventDuplicates: true,
+       theme: "facebook",
+      // hintText: "Enter the Law Firm",
+      // noResultsText: "Nothing found.",
+      // searchingText: "law...",
+  }); 
+$("#token-input-Law").attr("placeholder","Select Law Firm")
+	});
+
+</script>

@@ -1,0 +1,26 @@
+
+<td class="htmlres">
+			<%= text_field :member_due,:member, :id=>"member_due", :size => "30" %></td>
+<%@d=[]
+    a=@members
+      a.each do|s|
+        h={}
+        h["id"]=s.name
+        h["name"]=s.name
+        @d << h
+      end
+      l=sanitize(@d.to_json)%>
+      <script type="text/javascript">
+$(function (){
+var availableTags = <%=l%>;
+  $('#member_due').tokenInput(availableTags, { 
+      preventDuplicates: true,
+       theme: "facebook",
+      // hintText: "Enter the Law Firm",
+      // noResultsText: "Nothing found.",
+      // searchingText: "law...",
+  }); 
+$("#token-input-Law").attr("placeholder","Select Law Firm")
+	});
+
+</script>

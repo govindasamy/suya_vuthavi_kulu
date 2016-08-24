@@ -1,5 +1,5 @@
 class Mutharaiyar::MemberDuesController < ApplicationController
- 
+ #require 'debugger'
   #skip_before_filter :authenticate_user!, :only => [:index, :search]
 
   def index
@@ -51,5 +51,19 @@ class Mutharaiyar::MemberDuesController < ApplicationController
   	@member_due.destroy
   	redirect_to mutharaiyar_member_dues_path
   end
+  def village_member
+    @location=Location.find_by_id(params[:id])
+    @members=@location.members
+    @d=[]
+    a=@members
+      a.each do|s|
+        h={}
+        h["id"]=s.name
+        h["name"]=s.name
+        @d << h
+      end
 
+    #return @d
+    render :template => "mutharaiyar/member_dues/village_member",:layout=>false
+  end
 end
