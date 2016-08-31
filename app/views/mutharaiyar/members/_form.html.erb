@@ -24,23 +24,23 @@
 		<td><%= collection_select :member, :company_id, @companies, :id, :name , {:prompt => "--select--"} %><%=link_to("Add Company",new_mutharaiyar_company_path,{id: :adcomp})%></td>
 
 	</tr>
-	<tr style="display:none">
+	<tr class="company" style="display:none">
 		<td>company Name : </td>
 		<td><%= text_field :company, :name, :size => "30" %></td>
 	</tr>
-	<tr style="display:none">
+	<tr class="company" style="display:none">
 		<td>company district : </td>
 		<td><%= text_field :compaddress, :district, :size => "30" %></td>
 	</tr>
-	<tr style="display:none">
+	<tr class="company" style="display:none">
 		<td>company state : </td>
 		<td><%= text_field :compaddress, :state, :size => "30" %></td>
 	</tr>
-	<tr style="display:none">
+	<tr class="company" style="display:none">
 		<td>company Country : </td>
 		<td><%= text_field :compaddress, :country, :size => "30" %></td>
 	</tr>
-	<tr style="display:none">
+	<tr class="company" style="display:none">
 		<td>company pin : </td>
 		<td><%= text_field :compaddress, :pin, :size => "30" %></td>
 	</tr>
@@ -84,7 +84,13 @@
 
 $("#adcomp").click(function(e){
 	e.preventDefault()
+	if($('#adcomp').text()=='Add Company'){
   $("#table_style tr").show();
+  $('#adcomp').text('Hide Company');
+}else{
+	$(".company").hide();
+  $('#adcomp').text('Add Company');
+}
   });
 
 </script>
