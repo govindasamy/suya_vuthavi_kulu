@@ -167,7 +167,6 @@ ActiveRecord::Schema.define(:version => 20160731180224) do
 
   create_table "member_dues", :force => true do |t|
     t.date     "date"
-    t.date     "due_date"
     t.integer  "location_id"
     t.integer  "member_id"
     t.decimal  "amount",      :precision => 10, :scale => 0, :default => 0

@@ -5,7 +5,8 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2','~> 0.3.21'
+#gem 'activerecord-mysql2-adapter'
 gem 'devise'
 
 # Gems used only for assets and not required
@@ -31,15 +32,15 @@ end
 
 gem 'rufus-scheduler'
 
-gem "rmagick"
+gem "rmagick",'~>2.15.4'
 
 gem 'carrierwave'
 gem "fog"
 
 gem "aws-s3"
-
 # gem 'whenever', :require => false
-
+#pagination
+gem 'kaminari'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

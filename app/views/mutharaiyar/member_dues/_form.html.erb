@@ -17,11 +17,7 @@
 		<td>Date : </td>
 		<td><%= date_select :member_due, :date,:start_year => 1900, :end_year => Time.now.year, :size => "30" %></td>
 	</tr>
-	<tr>
-		<td>Due Date : </td>
-		<td><%= date_select :member_due, :due_date,:start_year => 1900, :end_year => Time.now.year, :size => "30" %></td>
-	</tr>
-	
+
 </table>
  <%@d=[]
     a=@members

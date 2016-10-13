@@ -31,6 +31,7 @@ class AddTableForCompanyAndAddresses < ActiveRecord::Migration
       t.timestamps
     end
    add_column :members, :company_id, :integer
+   remove_column :member_dues, :due_date
   end
 
 end

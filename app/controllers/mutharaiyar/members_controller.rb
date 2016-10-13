@@ -12,9 +12,14 @@ class Mutharaiyar::MembersController < ApplicationController
     @member = Member.new
   end
    def search
+    @locations = Location.order("name")
     @results = Member.where("1=1")
-    @results = @results.where(["location_id = ?", params[:id]]) if !params[:id].blank?
-    render :layout => false
+    @results = @results.where(["location_id = ?", params[:id]]).page(params[:page]).per(2) if !params[:id].blank?
+    if request.xhr?
+      render :layout => false
+    else
+      render :layout => true
+    end
   end
   def create
      if params[:member][:company_id]
